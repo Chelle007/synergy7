@@ -1,3 +1,5 @@
+import model.MenuItem;
+
 public class Order {
     private final MenuItem menuItem;
     private int qty;

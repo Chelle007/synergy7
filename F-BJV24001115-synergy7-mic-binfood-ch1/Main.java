@@ -1,3 +1,6 @@
+import model.MenuItem;
+import model.Order;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.text.DecimalFormat;

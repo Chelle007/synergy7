@@ -1,3 +1,5 @@
 .idea/
-synergy7.iml
 out/
+target/
+synergy7.iml
+receipt(*).txt
