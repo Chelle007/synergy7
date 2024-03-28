@@ -1,4 +1,4 @@
-package model.entity;
+package src.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class Order {
     private final MenuItem menuItem;
-    private String size;
+    private final String size;
     private int qty;
     private int price;
 

@@ -1,21 +1,19 @@
-package util;
+package src;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import lombok.Getter;
+import src.model.entity.*;
 
-import model.entity.*;
-
-public class InitializationUtils {
-    @Getter private static final ArrayList<MenuItem> menu = new ArrayList<>();
-    @Getter private static final ArrayList<Order> orders = new ArrayList<>();
-    @Getter private static final ArrayList<Promo> promos = new ArrayList<>();
-    @Getter private static final ArrayList<Order> freebiesOrder = new ArrayList<>();
-
-    private InitializationUtils() {
-    }
+public class Data {
+    public static final ArrayList<MenuItem> menu = new ArrayList<>();
+    public static final ArrayList<Order> orders = new ArrayList<>();
+    public static final ArrayList<Promo> promos = new ArrayList<>();
+    public static final ArrayList<Order> freebiesOrder = new ArrayList<>();
+    public static String notes = "";
 
     public static void initializeMenu() {
         menu.add(new MenuItem("Nasi Goreng", MenuItem.FoodType.FOOD, 15000, 2000));
@@ -26,7 +24,7 @@ public class InitializationUtils {
     }
 
     public static void initializePromo() {
-        Promo promo = new Promo("Ramadan", Promo.PromoType.FREEBIES, "Pesan 2 makanan FREE 1 es teh manis!");
+        PromoFreebies promoRamadan = new PromoFreebies("Ramadan", "Pesan 2 makanan FREE 1 es teh manis!");
 
         // Set makanan sebagai eligible menu
         ArrayList<MenuItem> eligibleMenu = new ArrayList<>();
@@ -35,25 +33,25 @@ public class InitializationUtils {
                 eligibleMenu.add(menuItem);
             }
         }
-        promo.setEligibleMenu(eligibleMenu);
+        promoRamadan.setEligibleMenu(eligibleMenu);
 
         // Set es teh manis sebagai free menu item
         for (MenuItem menuItem : menu) {
             if (menuItem.getName().equals("Es Teh Manis")) {
-                promo.setFreeMenuItem(new Order(menuItem, "M", 1, 0));
+                promoRamadan.setFreeMenuItem(new Order(menuItem, "M", 1, 0));
                 break;
             }
         }
 
         // Set 2 sebagai requirement untuk mendapatkan promo
-        promo.setRequiredMenuItemCount(2);
+        promoRamadan.setRequiredMenuItemCount(2);
 
         // Set waktu berbuka saat Ramadan sebagai valid date dan time
-        promo.setValidStartDate(LocalDate.of(2024, 3, 11));
-        promo.setValidEndDate(LocalDate.of(2024, 4, 10));
-        promo.setValidStartTime(LocalTime.of(17, 0));
-        promo.setValidEndTime(LocalTime.of(21, 0));
+        promoRamadan.setValidStartDate(LocalDate.of(2024, 3, 11));
+        promoRamadan.setValidEndDate(LocalDate.of(2024, 4, 10));
+        promoRamadan.setValidStartTime(LocalTime.of(17, 0));
+        promoRamadan.setValidEndTime(LocalTime.of(21, 0));
 
-        promos.add(promo);
+        promos.add(promoRamadan);
     }
 }

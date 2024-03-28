@@ -1,16 +1,17 @@
-package model.entity;
+package src.model.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Promo {
+public abstract class Promo {
     private String name;
-    private PromoType type;
     private String description;
     private boolean availability;
     private LocalDate validStartDate;
@@ -19,20 +20,9 @@ public class Promo {
     private LocalTime validEndTime;
     private ArrayList<MenuItem> eligibleMenu;
 
-    // field for freebies type
-    private Order freeMenuItem;
-    private int requiredMenuItemCount;
-
-    public enum PromoType {
-        COMBO,
-        DISCOUNT,
-        FREEBIES
-    }
-
     // CONSTRUCTOR
-    public Promo(String name, PromoType type, String description) {
+    protected Promo(String name, String description) {
         this.name = name;
-        this.type = type;
         this.description = description;
         availability = true;
     }

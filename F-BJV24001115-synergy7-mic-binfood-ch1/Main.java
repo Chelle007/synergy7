@@ -1,5 +1,5 @@
-import model.MenuItem;
-import model.Order;
+import src.model.MenuItem;
+import src.model.Order;
 
 import java.util.Scanner;
 import java.util.ArrayList;

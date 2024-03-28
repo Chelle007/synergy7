@@ -1,4 +1,4 @@
-package model.entity;
+package src.model.entity;
 
 import java.util.HashMap;
 import lombok.Getter;
