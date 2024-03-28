@@ -1,4 +1,4 @@
-package util;
+package src.util;
 
 public class ColorUtils {
     public static final String COLOR_OF_ERROR = "red";

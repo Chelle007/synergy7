@@ -1,4 +1,4 @@
-import model.MenuItem;
+import src.model.MenuItem;
 
 public class Order {
     private final MenuItem menuItem;
