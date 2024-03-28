@@ -17,10 +17,4 @@ public class PromoController {
             pv.displayPromoList(availablePromo);
         }
     }
-
-    public void resetPromo() {
-        PromoService ps = new PromoServiceImpl();
-
-        ps.resetPromo();
-    }
 }

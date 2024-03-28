@@ -5,7 +5,7 @@ import src.exception.DuplicateMenuItemException;
 import src.exception.MenuItemNotFoundException;
 import src.model.entity.MenuItem;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class MenuItemServiceImpl implements MenuItemService {
@@ -35,7 +35,7 @@ public class MenuItemServiceImpl implements MenuItemService {
     }
 
     @Override
-    public ArrayList<MenuItem> getList() {
+    public List<MenuItem> getList() {
         return Data.menu;
     }
 

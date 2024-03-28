@@ -1,13 +1,17 @@
 package src.util;
 
+import static src.util.ColorUtils.COLOR_OF_ERROR;
+import static src.util.ColorUtils.printlnColor;
+
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static src.util.ColorUtils.COLOR_OF_ERROR;
-import static src.util.ColorUtils.printlnColor;
-
 public class AdditionalUtils {
+
+    private AdditionalUtils() {
+    }
+
     // Method untuk print pilihan tidak valid
     public static void printChoiceInvalid() {
         printlnColor("Pilihan tidak valid.", COLOR_OF_ERROR);

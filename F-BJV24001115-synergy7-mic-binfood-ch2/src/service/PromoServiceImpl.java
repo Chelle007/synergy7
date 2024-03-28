@@ -1,7 +1,6 @@
 package src.service;
 
 import src.Data;
-import src.exception.DuplicateMenuItemException;
 import src.exception.DuplicatePromoException;
 import src.exception.PromoNotFoundException;
 import src.model.entity.MenuItem;
@@ -12,6 +11,7 @@ import src.model.entity.PromoFreebies;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PromoServiceImpl implements PromoService {
     @Override
@@ -40,7 +40,7 @@ public class PromoServiceImpl implements PromoService {
     }
 
     @Override
-    public ArrayList<Promo> getList() {
+    public List<Promo> getList() {
         return Data.promos;
     }
 

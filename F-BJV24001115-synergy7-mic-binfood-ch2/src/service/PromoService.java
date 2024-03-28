@@ -3,6 +3,7 @@ package src.service;
 import src.model.entity.Promo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface PromoService {
     // CREATE
@@ -10,7 +11,7 @@ public interface PromoService {
 
     // READ
     Promo get(int choice);
-    ArrayList<Promo> getList();
+    List<Promo> getList();
     ArrayList<Promo> getAvailablePromo();
 
     // UPDATE

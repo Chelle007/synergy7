@@ -4,11 +4,10 @@ import src.Data;
 import src.exception.OrderNotFoundException;
 import src.model.entity.MenuItem;
 import src.model.entity.Order;
-
-import java.util.ArrayList;
-
 import static src.util.AdditionalUtils.*;
 import static src.util.ColorUtils.*;
+
+import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
     @Override
@@ -41,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public ArrayList<Order> getList() {
+    public List<Order> getList() {
         return Data.orders;
     }
 
@@ -73,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String getListString(boolean withColor, ArrayList<Order> orders) {
+    public String getListString(boolean withColor, List<Order> orders) {
         StringBuilder output = new StringBuilder();
         String format = "%-19s %-7s %s%n";
         if (withColor) format = "%-21s %-16s %s%n";

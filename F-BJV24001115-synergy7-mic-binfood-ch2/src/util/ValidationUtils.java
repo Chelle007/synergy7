@@ -1,9 +1,9 @@
 package src.util;
 
+import static src.util.ColorUtils.*;
+
 import java.util.Scanner;
 import java.util.StringJoiner;
-
-import static src.util.ColorUtils.*;
 
 public class ValidationUtils {
     private static final Scanner input = new Scanner(System.in);

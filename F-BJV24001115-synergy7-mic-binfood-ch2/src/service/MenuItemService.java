@@ -2,7 +2,7 @@ package src.service;
 
 import src.model.entity.MenuItem;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public interface MenuItemService {
@@ -11,7 +11,7 @@ public interface MenuItemService {
 
     // READ
     MenuItem get(int choice);
-    ArrayList<MenuItem> getList();
+    List<MenuItem> getList();
 
     Set<String> getAvailableSize(int choice);
 

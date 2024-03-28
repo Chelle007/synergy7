@@ -1,8 +1,8 @@
 package src.service;
 
-import src.Data;
-
 public class NotesServiceImpl implements NotesService {
+    private String notes = "";
+
     @Override
     public void create(String notes) {
         String[] lines = notes.split("\\r?\\n");
@@ -11,28 +11,29 @@ public class NotesServiceImpl implements NotesService {
         for (String line : lines) {
             if (!line.trim().isEmpty()) {
                 allEmpty = false;
+                break;
             }
         }
 
         if (allEmpty) notes = "";
 
-        Data.notes = notes;
+        this.notes = notes;
     }
 
     @Override
     public String get() {
-        if (Data.notes.isEmpty()) return "-\n";
+        if (this.notes.isEmpty()) return "-\n";
 
-        return "\n" + Data.notes;
+        return "\n" + this.notes;
     }
 
     @Override
     public void update(String notes) {
-        Data.notes = notes;
+        this.notes = notes;
     }
 
     @Override
     public void clear() {
-        Data.notes = "";
+        this.notes = "";
     }
 }

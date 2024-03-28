@@ -1,9 +1,8 @@
 package src.view;
 
-import src.model.entity.MenuItem;
-
 import java.util.List;
 
+import src.model.entity.MenuItem;
 import static src.util.AdditionalUtils.formatPrice;
 import static src.util.ColorUtils.COLOR_OF_PRICE;
 import static src.util.ColorUtils.formatColor;

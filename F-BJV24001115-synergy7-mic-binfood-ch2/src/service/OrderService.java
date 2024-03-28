@@ -1,6 +1,6 @@
 package src.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import src.model.entity.Order;
 
@@ -10,11 +10,11 @@ public interface OrderService {
 
     // READ
     Order get(int choice);
-    ArrayList<Order> getList();
+    List<Order> getList();
     boolean isEmpty();
     int getTotalPrice();
     int getTotalQty();
-    String getListString(boolean withColor, ArrayList<Order> orders);
+    String getListString(boolean withColor, List<Order> orders);
     String getTotalListString(boolean withColor);
     String getReceipt(boolean withColor, int order);
 

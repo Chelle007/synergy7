@@ -1,18 +1,18 @@
 package src.controller;
 
-import java.util.ArrayList;
-
 import src.model.entity.MenuItem;
 import src.service.MenuItemService;
 import src.service.MenuItemServiceImpl;
 import src.view.MenuItemView;
+
+import java.util.List;
 
 public class MenuItemController {
     public void displayMenuItemList() {
         MenuItemService mis = new MenuItemServiceImpl();
         MenuItemView miv = new MenuItemView();
 
-        ArrayList<MenuItem> menu = mis.getList();
+        List<MenuItem> menu = mis.getList();
         miv.displayMenuItemList(menu);
     }
 

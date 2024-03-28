@@ -1,19 +1,20 @@
 package src;
 
+import src.model.entity.*;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import src.model.entity.*;
+import java.util.List;
 
 public class Data {
-    public static final ArrayList<MenuItem> menu = new ArrayList<>();
-    public static final ArrayList<Order> orders = new ArrayList<>();
-    public static final ArrayList<Promo> promos = new ArrayList<>();
-    public static final ArrayList<Order> freebiesOrder = new ArrayList<>();
-    public static String notes = "";
+    public static final List<MenuItem> menu = new ArrayList<>();
+    public static final List<Order> orders = new ArrayList<>();
+    public static final List<Promo> promos = new ArrayList<>();
+    public static final List<Order> freebiesOrder = new ArrayList<>();
+
+    private Data() {
+    }
 
     public static void initializeMenu() {
         menu.add(new MenuItem("Nasi Goreng", MenuItem.FoodType.FOOD, 15000, 2000));

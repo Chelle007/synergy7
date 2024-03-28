@@ -1,18 +1,13 @@
 package src.controller;
 
-import src.model.entity.Order;
 import src.service.*;
-import src.view.OrderView;
+import static src.util.AdditionalUtils.formatCurrentTime;
+import static src.util.ColorUtils.COLOR_OF_ERROR;
+import static src.util.ColorUtils.printlnColor;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-
-import static src.util.AdditionalUtils.formatCurrentTime;
-import static src.util.ColorUtils.COLOR_OF_ERROR;
-import static src.util.ColorUtils.printlnColor;
-import static src.util.ValidationUtils.checkInt;
 
 public class OrderController {
     public String displayTotalOrderList() {

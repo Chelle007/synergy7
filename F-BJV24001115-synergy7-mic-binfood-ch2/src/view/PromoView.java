@@ -1,13 +1,12 @@
 package src.view;
 
 import src.model.entity.Promo;
-
-import java.util.ArrayList;
-
 import static src.util.ColorUtils.printlnColor;
 
+import java.util.List;
+
 public class PromoView {
-    public void displayPromoList(ArrayList<Promo> availablePromo) {
+    public void displayPromoList(List<Promo> availablePromo) {
         if (!availablePromo.isEmpty()) {
             printlnColor("PROMO :", "bold");
             for (Promo promo : availablePromo) {

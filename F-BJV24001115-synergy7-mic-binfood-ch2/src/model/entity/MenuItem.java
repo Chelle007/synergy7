@@ -50,9 +50,5 @@ public class MenuItem {
     public Integer getSizePrice(String size) {
         return availableSize.get(size);
     }
-
-    public void setSizePrices(String size, int price) {
-        availableSize.computeIfPresent(size, (key, oldValue) -> price);
-    }
 }
 

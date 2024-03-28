@@ -1,10 +1,9 @@
 package src.view;
 
-import src.controller.*;
-
 import java.util.List;
 import java.util.Scanner;
 
+import src.controller.*;
 import static src.util.AdditionalUtils.formatBarrier;
 import static src.util.ColorUtils.printlnColor;
 import static src.util.ValidationUtils.checkInt;
