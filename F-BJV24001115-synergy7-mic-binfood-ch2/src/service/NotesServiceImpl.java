@@ -28,11 +28,6 @@ public class NotesServiceImpl implements NotesService {
     }
 
     @Override
-    public void update(String notes) {
-        this.notes = notes;
-    }
-
-    @Override
     public void clear() {
         this.notes = "";
     }

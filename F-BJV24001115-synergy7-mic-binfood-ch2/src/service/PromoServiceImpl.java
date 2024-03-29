@@ -1,7 +1,6 @@
 package src.service;
 
 import src.Data;
-import src.exception.DuplicatePromoException;
 import src.exception.PromoNotFoundException;
 import src.model.entity.MenuItem;
 import src.model.entity.Order;
@@ -14,17 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromoServiceImpl implements PromoService {
-    @Override
-    public void create(Promo promo) {
-        for (Promo p : Data.promos) {
-            if (p.getName().equals(promo.getName())) {
-                throw new DuplicatePromoException("Ditemukan promo dengan nama yang sama: " + promo.getName());
-            }
-        }
-
-        Data.promos.add(promo);
-    }
-
     @Override
     public Promo get(int choice) {
         if (choice < 0 || choice >= Data.promos.size()) {
@@ -58,26 +46,6 @@ public class PromoServiceImpl implements PromoService {
 
         return availablePromo;
     }
-
-    @Override
-    public void update(int choice, Promo promo) {
-        Data.promos.set(choice, promo);
-    }
-
-    @Override
-    public void delete(int choice) {
-        if (choice < 0 || choice >= Data.promos.size()) {
-            throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
-        }
-
-        Data.promos.remove(choice);
-    }
-
-    @Override
-    public void clearList() {
-        Data.promos.clear();
-    }
-
     @Override
     public void resetPromo() {
         for (Promo promo : getAvailablePromoList()) {

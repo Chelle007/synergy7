@@ -11,7 +11,6 @@ public class Data {
     public static final List<MenuItem> menu = new ArrayList<>();
     public static final List<Order> orders = new ArrayList<>();
     public static final List<Promo> promos = new ArrayList<>();
-    public static final List<Promo> availablePromos = new ArrayList<>();
     public static final List<Order> freebiesOrder = new ArrayList<>();
 
     private Data() {

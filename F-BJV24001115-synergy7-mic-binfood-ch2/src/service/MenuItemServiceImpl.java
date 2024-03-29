@@ -10,17 +10,6 @@ import java.util.Set;
 
 public class MenuItemServiceImpl implements MenuItemService {
     @Override
-    public void create(MenuItem menuItem) {
-        for (MenuItem m : Data.menu) {
-            if (m.getName().equals(menuItem.getName())) {
-                throw new DuplicateMenuItemException("Ditemukan menuItem dengan nama yang sama: " + menuItem.getName());
-            }
-        }
-
-        Data.menu.add(menuItem);
-    }
-
-    @Override
     public MenuItem get(int choice) {
         if (choice < 0 || choice >= Data.menu.size()) {
             throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
@@ -44,25 +33,5 @@ public class MenuItemServiceImpl implements MenuItemService {
         MenuItem menuItem = get(choice);
 
         return menuItem.getAvailableSize().keySet();
-    }
-
-    @Override
-    public void update(int choice, MenuItem menuItem) {
-        get(choice);
-        Data.menu.set(choice, menuItem);
-    }
-
-    @Override
-    public void delete(int choice) {
-        if (choice < 0 || choice >= Data.menu.size()) {
-            throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
-        }
-
-        Data.menu.remove(choice);
-    }
-
-    @Override
-    public void clearList() {
-        Data.menu.clear();
     }
 }
