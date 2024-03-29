@@ -12,7 +12,7 @@ public class PromoController {
         PromoService ps = new PromoServiceImpl();
         PromoView pv = new PromoView();
 
-        ArrayList<Promo> availablePromo = ps.getAvailablePromo();
+        ArrayList<Promo> availablePromo = ps.getAvailablePromoList();
         if (!availablePromo.isEmpty()) {
             pv.displayPromoList(availablePromo);
         }

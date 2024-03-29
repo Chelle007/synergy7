@@ -45,7 +45,7 @@ public class PromoServiceImpl implements PromoService {
     }
 
     @Override
-    public ArrayList<Promo> getAvailablePromo() {
+    public ArrayList<Promo> getAvailablePromoList() {
         ArrayList<Promo> availablePromo = new ArrayList<>();
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
@@ -80,7 +80,7 @@ public class PromoServiceImpl implements PromoService {
 
     @Override
     public void resetPromo() {
-        for (Promo promo : Data.promos) {
+        for (Promo promo : getAvailablePromoList()) {
             if (promo instanceof PromoFreebies promoFreebies) {
                 Data.freebiesOrder.clear();
                 ArrayList<MenuItem> eligibleMenu = promo.getEligibleMenu();

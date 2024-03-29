@@ -12,7 +12,7 @@ public interface PromoService {
     // READ
     Promo get(int choice);
     List<Promo> getList();
-    ArrayList<Promo> getAvailablePromo();
+    ArrayList<Promo> getAvailablePromoList();
 
     // UPDATE
     void update(int choice, Promo promo);
