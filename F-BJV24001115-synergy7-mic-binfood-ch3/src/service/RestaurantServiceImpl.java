@@ -48,12 +48,6 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void deleteById(int id) {
-        Restaurant restaurant = getById(id);
-        Data.RESTAURANTS.remove(restaurant);
-    }
-
-    @Override
     public void clearList() {
         Data.RESTAURANTS.clear();
     }

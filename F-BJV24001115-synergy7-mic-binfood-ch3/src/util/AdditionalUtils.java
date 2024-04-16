@@ -30,12 +30,13 @@ public class AdditionalUtils {
         }
     }
 
+    // Method untuk format tanggal dan waktu
+    public static String formatTime(String format, LocalDateTime localDateTime) {
+        return localDateTime.format(DateTimeFormatter.ofPattern(format));
+    }
+
     // Method untuk format tanggal dan waktu saat ini
     public static String formatCurrentTime(String format) {
         return formatTime(format, LocalDateTime.now());
-    }
-
-    public static String formatTime(String format, LocalDateTime localDateTime) {
-        return localDateTime.format(DateTimeFormatter.ofPattern(format));
     }
 }

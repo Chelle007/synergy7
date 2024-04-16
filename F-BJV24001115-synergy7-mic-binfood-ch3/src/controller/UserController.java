@@ -30,13 +30,14 @@ public class UserController {
 
     public void displayMainMenu(User user) {
         CustomerController cc = new CustomerController();
-        SellerController sc = new SellerController();
+//        SellerController sc = new SellerController();
 
         if (user.getRole()== User.Role.CUSTOMER) {
             cc.displayMainMenu(user);
-        } else {
-            sc.displayMainMenu(user.getRestaurant());
         }
+//        else {
+//            sc.displayMainMenu(user.getRestaurant());
+//        }
     }
 
     public void displayProfileMenu(User user) {

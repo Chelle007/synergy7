@@ -1,7 +1,6 @@
 package src.service;
 
 import src.Data;
-import src.exception.CustomerNotFoundException;
 import src.exception.EmailExistedException;
 import src.exception.UsernameExistedException;
 import src.model.entity.User;
@@ -20,18 +19,6 @@ public class UserServiceImpl implements UserService {
             user.setId(Data.USERS.size());
             Data.USERS.add(user);
         }
-    }
-
-    @Override
-    public User getById(int id) {
-        Optional<User> customer = Data.USERS.stream()
-                .filter(c -> c.getId() == id)
-                .findFirst();
-        if (customer.isEmpty()) {
-            throw new CustomerNotFoundException("User tidak ditemukan: " + id);
-        }
-
-        return customer.get();
     }
 
     @Override

@@ -9,7 +9,6 @@ public interface UserService {
     void create(User user);
 
     // READ
-    User getById(int choice);
     User getByUserPass(String username, String password);
     List<User> getList();
     boolean usernameExists(String username);

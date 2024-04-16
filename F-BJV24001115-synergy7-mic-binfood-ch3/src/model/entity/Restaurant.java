@@ -21,10 +21,4 @@ public class Restaurant {
                 .filter(i -> i.getRestaurant().getId() == this.id)
                 .toList();
     }
-
-    public List<Order> getOrderList() {
-        return Data.ORDERS.stream()
-                .filter(o -> o.getRestaurant().getId() == this.id)
-                .toList();
-    }
 }

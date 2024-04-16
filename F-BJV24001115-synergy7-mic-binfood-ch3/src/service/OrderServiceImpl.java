@@ -1,11 +1,9 @@
 package src.service;
 
 import src.Data;
-import src.exception.OrderNotFoundException;
 import src.model.entity.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import static src.util.AdditionalUtils.*;
 import static src.util.AdditionalUtils.formatBarrier;
@@ -21,18 +19,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void createNotes(Order order, String string) {
         order.setNotes(string);
-    }
-
-    @Override
-    public Order getById(int id) {
-        Optional<Order> order = Data.ORDERS.stream()
-                .filter(o -> o.getId() == id)
-                .findFirst();
-        if (order.isEmpty()) {
-            throw new OrderNotFoundException("Order tidak ditemukan: " + id);
-        }
-
-        return order.get();
     }
 
     @Override
@@ -130,12 +116,6 @@ public class OrderServiceImpl implements OrderService {
                 Pembayaran : BinarCash
                 
                 ** Simpan struk ini sebagai bukti pembayaran **""";
-    }
-
-    @Override
-    public void deleteById(int id) {
-        Order order = getById(id);
-        Data.ORDERS.remove(order);
     }
 
     @Override

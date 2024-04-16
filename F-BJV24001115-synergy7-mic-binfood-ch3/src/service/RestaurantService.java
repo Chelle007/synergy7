@@ -14,6 +14,5 @@ public interface RestaurantService {
     List<Restaurant> getList();
 
     // DELETE
-    void deleteById(int choice);
     void clearList();
 }
