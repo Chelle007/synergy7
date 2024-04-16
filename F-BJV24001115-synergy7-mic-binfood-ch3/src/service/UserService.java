@@ -12,6 +12,9 @@ public interface UserService {
     User getById(int choice);
     User getByUserPass(String username, String password);
     List<User> getList();
+    boolean usernameExists(String username);
+    boolean emailExists(String email);
+    boolean passwordInvalid(String password);
 
     // DELETE
     void delete(int choice);

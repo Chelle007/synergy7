@@ -36,11 +36,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getByUserPass(String username, String password) {
-        Optional<User> customer = Data.USERS.stream()
-                .filter(c -> c.getUsername().equals(username) && c.getPassword().equals(password))
+        Optional<User> user = Data.USERS.stream()
+                .filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password))
                 .findFirst();
 
-        return customer.orElse(null);
+        return user.orElse(null);
+    }
+
+    @Override
+    public boolean usernameExists(String username) {
+        return Data.USERS.stream().anyMatch(u -> u.getUsername().equals(username));
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return Data.USERS.stream().anyMatch(u -> u.getEmail().equals(email));
+    }
+
+    @Override
+    public boolean passwordInvalid(String password) {
+        return password.length() < 8;
     }
 
     @Override

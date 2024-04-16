@@ -4,8 +4,6 @@ import src.model.entity.*;
 import src.service.*;
 import src.view.BasicView;
 import src.view.CustomerView;
-import src.view.OrderView;
-import src.view.UserView;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
@@ -17,8 +15,6 @@ import static src.util.ValidationUtils.checkString;
 public class CustomerController {
     public void displayMainMenu(User user) {
         CustomerView cv = new CustomerView();
-        OrderView ov = new OrderView();
-        UserView uv = new UserView();
         BasicView bv = new BasicView();
         UserController uc = new UserController();
 
@@ -32,11 +28,11 @@ public class CustomerController {
                 case 1:
                     displayRestaurantsMenu(user);
                     break;
-                case 2:
-                    ov.displayOrderHistory(user);
+                case 2: // not done
+                    displayOrderHistoryMenu(user);
                     break;
                 case 3:
-                    uv.displayChangeProfileMenu(user);
+                    uc.displayProfileMenu(user);
                     break;
                 case 4:
                     uc.displayLoginMenu();
@@ -249,5 +245,26 @@ public class CustomerController {
         }
 
         os.createNotes(order, newNotes.toString());
+    }
+
+    public void displayOrderHistoryMenu(User user) {
+        CustomerView cv = new CustomerView();
+        BasicView bv = new BasicView();
+
+        cv.displayOrderHistoryMenu(user);
+
+        while(true) {
+            int choice = checkInt("=> ");
+            if (choice == 0) {
+                displayMainMenu(user);
+                break;
+            } else if (choice > 0 && choice <= user.getOrderList().size()) {
+                cv.displayOrderHistoryDetails(user, choice);
+                displayOrderHistoryMenu(user);
+                break;
+            } else {
+                bv.printChoiceInvalid();
+            }
+        }
     }
 }

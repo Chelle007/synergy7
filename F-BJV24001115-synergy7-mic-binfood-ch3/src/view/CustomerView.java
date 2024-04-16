@@ -3,8 +3,10 @@ package src.view;
 import src.controller.*;
 import src.model.entity.Order;
 import src.model.entity.Restaurant;
+import src.model.entity.User;
 
 import static src.util.AdditionalUtils.formatBarrier;
+import static src.util.ColorUtils.formatColor;
 import static src.util.ValidationUtils.checkInt;
 import static src.util.ValidationUtils.checkString;
 
@@ -110,5 +112,22 @@ public class CustomerView {
     public void displayReceiptMenu(Order order) {
         OrderController oc = new OrderController();
         System.out.println(oc.displayReceipt(order));
+    }
+
+    public void displayOrderHistoryMenu(User user) {
+        OrderView ov = new OrderView();
+
+        System.out.println(formatBarrier("History Order"));
+        System.out.println(formatColor("Pilih detail order yang ingin dicek:", "bold"));
+        ov.displayOrderList(user.getOrderList());
+        System.out.println();
+        System.out.println("(input 0 untuk kembali)");
+    }
+
+    public void displayOrderHistoryDetails(User user, int choice) {
+        OrderController oc = new OrderController();
+
+        System.out.println(formatBarrier("Detail Order"));
+        System.out.print(oc.displayTotalOrderList(user.getOrderList().get(choice-1)));
     }
 }

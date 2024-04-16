@@ -23,7 +23,7 @@ public class MenuItemView {
     public void displayMenuItem(int num, MenuItem menuItem) {
         System.out.printf(
                 "%d. %-13s | %16s | %16s | %16s %n",
-                (num),
+                num,
                 menuItem.getName(),
                 formatColor(formatPrice(menuItem.getSizePrice("S")), COLOR_OF_PRICE),
                 formatColor(formatPrice(menuItem.getSizePrice("M")), COLOR_OF_PRICE),
