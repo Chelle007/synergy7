@@ -8,10 +8,6 @@ public class ColorUtils {
     private ColorUtils() {
     }
 
-    public static void printlnColor(String output, String color) {
-        System.out.println(formatColor(output, color));
-    }
-
     public static String formatColor(String output, String color) {
         String ansiColor = "\u001B[0m";
         String ansiReset = "\u001B[0m";

@@ -1,128 +1,253 @@
 package src.controller;
 
-import src.model.entity.OrderDetail;
+import src.model.entity.*;
 import src.service.*;
+import src.view.BasicView;
 import src.view.CustomerView;
 import src.view.OrderView;
-import static src.util.AdditionalUtils.printChoiceInvalid;
-import static src.util.ColorUtils.COLOR_OF_ERROR;
-import static src.util.ColorUtils.printlnColor;
+import src.view.UserView;
 
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
+import static src.util.ColorUtils.COLOR_OF_ERROR;
+import static src.util.ValidationUtils.checkInt;
+import static src.util.ValidationUtils.checkString;
 
 public class CustomerController {
-    public boolean mainMenuSelection(int choice) {
+    public void displayMainMenu(User user) {
         CustomerView cv = new CustomerView();
-        MenuItemService mis = new MenuItemServiceImpl();
-        OrderDetailService ods = new OrderDetailServiceImpl();
+        OrderView ov = new OrderView();
+        UserView uv = new UserView();
+        BasicView bv = new BasicView();
+        UserController uc = new UserController();
 
-        if (choice == 0) {
-            cv.displayExitMenu();
-            return true;
-        } else if (choice >= 1 && choice <= mis.getList().size()) {
-            cv.displayQtyMenu(choice);
-            return true;
-        } else if (choice == 99) {
-            if (ods.getList().isEmpty()) {
-                printlnColor("Anda belum memesan apa pun.", COLOR_OF_ERROR);
-            } else {
-                cv.displayTotalMenu();
-                return true;
+        cv.displayMainMenu();
+
+        boolean validChoice;
+        do {
+            validChoice = true;
+            int choice = checkInt("=> ");
+            switch(choice) {
+                case 1:
+                    displayRestaurantsMenu(user);
+                    break;
+                case 2:
+                    ov.displayOrderHistory(user);
+                    break;
+                case 3:
+                    uv.displayChangeProfileMenu(user);
+                    break;
+                case 4:
+                    uc.displayLoginMenu();
+                    break;
+                case 0:
+                    bv.displayExitMenu();
+                    break;
+                default:
+                    bv.printChoiceInvalid();
+                    validChoice = false;
+                    break;
             }
-        } else {
-            printChoiceInvalid();
-        }
-        return false;
+        } while (!validChoice);
     }
 
-    public void askSizeAndQty(int choice, boolean update) {
+    public void displayRestaurantsMenu(User user) {
+        CustomerView cv = new CustomerView();
+        RestaurantService rs = new RestaurantServiceImpl();
+        BasicView bv = new BasicView();
+
+        cv.displayRestaurantsMenu();
+
+        while (true) {
+            int choice = checkInt("=> ");
+            if (choice == 0) {
+                displayMainMenu(user);
+                break;
+            } else if (choice >= 1 && choice <= rs.getList().size()) {
+                Restaurant restaurant = rs.getByChoice(choice);
+                Order order = new Order(restaurant, user);
+                displayMenuItemsMenu(user, restaurant, order);
+                break;
+            } else {
+                bv.printChoiceInvalid();
+            }
+        }
+    }
+
+    public void displayMenuItemsMenu(User user, Restaurant restaurant, Order order) {
         CustomerView cv = new CustomerView();
         MenuItemService mis = new MenuItemServiceImpl();
+        BasicView bv = new BasicView();
+
+        cv.displayMenuItemsMenu(restaurant);
+
+        while (true) {
+            int choice = checkInt("=> ");
+            if (choice == 0) {
+                bv.displayExitMenu();
+                break;
+            } else if (choice >= 1 && choice <= mis.getList().size()) {
+                cv.displayQtyMenu(restaurant, choice);
+                askSizeAndQty(order, restaurant, choice, false);
+                displayMenuItemsMenu(user, restaurant, order);
+                break;
+            } else if (choice == 99) {
+                if (order.getOrderDetailList().isEmpty()) {
+                    new BasicView().printlnColor("Anda belum memesan apa pun.", COLOR_OF_ERROR);
+                } else {
+                    displayTotalMenu(user, restaurant, order);
+                    break;
+                }
+            } else if (choice == 100) {
+                displayMainMenu(user);
+                break;
+            }
+            else {
+                bv.printChoiceInvalid();
+            }
+        }
+    }
+
+    public void askSizeAndQty(Order order, Restaurant restaurant, int choice, boolean update) {
+        CustomerView cv = new CustomerView();
         OrderDetailService ods = new OrderDetailServiceImpl();
+        MenuItemService mis = new MenuItemServiceImpl();
 
         String size = cv.askSize(new String[]{"0", "S", "M", "L"});
 
         if (!size.equals("0")) {
             int qty = cv.askQty();
             if (qty != 0) {
-                if (update) ods.update(choice-1, size, qty);
-//                else {
-//                    OrderDetail orderDetail = new OrderDetail(mis.get(choice-1), size, qty);
-//                    ods.create(orderDetail);
-//                }
+                if (update) ods.update(order, choice, size, qty);
+                else {
+                    MenuItem menuItem = mis.getByRestaurantAndChoice(restaurant, choice);
+                    OrderDetail orderDetail = new OrderDetail(ods.getList().size(), size, qty, menuItem.getSizePrice(size), menuItem, order);
+                    ods.create(orderDetail);
+                }
             }
         }
     }
 
-    public boolean totalMenuSelection(int choice) {
+    public void displayTotalMenu(User user, Restaurant restaurant, Order order) {
         CustomerView cv = new CustomerView();
+        BasicView bv = new BasicView();
         OrderDetailService ods = new OrderDetailServiceImpl();
-        NotesService ns = new NotesServiceImpl();
+        OrderService os = new OrderServiceImpl();
 
-        switch (choice) {
-            case 1:
-                cv.displayConfirmationMenu();
-                return true;
-            case 2:
-                cv.displayMainMenu();
-                return true;
-            case 3:
-                cv.displayEditMenu();
-                return true;
-            case 4:
-                ods.clearList();
-                ns.clear();
-                cv.displayMainMenu();
-                return true;
-            case 5:
-                cv.displayNotesMenu();
-                cv.displayTotalMenu();
-                return true;
-            case 0:
-                cv.displayExitMenu();
-                return true;
-            default:
-                printChoiceInvalid();
-                break;
-        }
+        cv.displayTotalMenu(order);
 
-        return false;
+        boolean validChoice;
+        do {
+            validChoice = true;
+            int choice = checkInt("=> ");
+            switch (choice) {
+                case 1:
+                    displayConfirmationMenu(user, restaurant, order);
+                    break;
+                case 2:
+                    displayMenuItemsMenu(user, restaurant, order);
+                    break;
+                case 3:
+                    displayEditMenu(user, restaurant, order);
+                    break;
+                case 4:
+                    ods.clearList(order);
+                    os.clearNotes(order);
+                    displayMenuItemsMenu(user, restaurant, order);
+                    break;
+                case 5:
+                    displayNotesMenu(order);
+                    displayTotalMenu(user, restaurant, order);
+                    break;
+                case 0:
+                    bv.displayExitMenu();
+                    break;
+                default:
+                    bv.printChoiceInvalid();
+                    validChoice = false;
+                    break;
+            }
+        } while (!validChoice);
     }
 
-    public void confirmationMenuSelection(String choice) {
+    public void displayConfirmationMenu(User user, Restaurant restaurant, Order order) {
         CustomerView cv = new CustomerView();
+
+        cv.displayConfirmationMenu();
+
+        String choice = checkString("=> ", new String[]{"Y", "N"}, true);
 
         if (choice.equals("Y") || choice.equals("y")) {
-            cv.displayReceiptMenu();
+            displayReceiptMenu(user, order);
         } else {
-            cv.displayTotalMenu();
+            displayTotalMenu(user, restaurant, order);
         }
     }
 
-    public boolean editMenuSelection(int choice) {
+    public void displayReceiptMenu(User user, Order order) {
         CustomerView cv = new CustomerView();
-        OrderView ov = new OrderView();
-        OrderDetailService ods = new OrderDetailServiceImpl();
-        PromoService ps = new PromoServiceImpl();
+        OrderService os = new OrderServiceImpl();
 
-        switch (choice) {
-            case 1:
-                askSizeAndQty(ov.askOrderChoice(), true);
-                cv.displayEditMenu();
-                return true;
-            case 2:
-                ods.delete(ov.askOrderChoice()-1);
-                ps.resetPromo();
-                if (ods.isEmpty()) cv.displayMainMenu();
-                else cv.displayEditMenu();
-                return true;
-            case 0:
-                cv.displayTotalMenu();
-                return true;
-            default:
-                printChoiceInvalid();
+        order.setOrderTime(LocalDateTime.now());
+        order.setCompleted(true);
+        os.add(order);
+
+        cv.displayReceiptMenu(order);
+
+        displayMainMenu(user);
+    }
+
+    public void displayEditMenu(User user, Restaurant restaurant, Order order) {
+        CustomerView cv = new CustomerView();
+        OrderDetailController odc = new OrderDetailController();
+        OrderDetailService ods = new OrderDetailServiceImpl();
+        BasicView bv = new BasicView();
+
+        cv.displayEditMenu(order);
+
+        boolean validChoice;
+        do {
+            validChoice = true;
+            int choice = checkInt("=> ");
+            switch (choice) {
+                case 1:
+                    askSizeAndQty(order, restaurant, odc.askOrderChoice(order), true);
+                    displayEditMenu(user, restaurant, order);
+                    break;
+                case 2:
+                    ods.deleteByChoice(order, odc.askOrderChoice(order));
+                    if (order.getOrderDetailList().isEmpty()) displayMenuItemsMenu(user, restaurant, order);
+                    else displayEditMenu(user, restaurant, order);
+                    break;
+                case 0:
+                    displayTotalMenu(user, restaurant, order);
+                    break;
+                default:
+                    bv.printChoiceInvalid();
+                    validChoice = false;
+                    break;
+            }
+        } while (!validChoice);
+    }
+
+    public void displayNotesMenu(Order order) {
+        CustomerView cv = new CustomerView();
+        OrderService os = new OrderServiceImpl();
+        Scanner in = new Scanner(System.in);
+
+        cv.displayNotesMenu();
+
+        StringBuilder newNotes = new StringBuilder();
+        while (true) {
+            String newLine = in.nextLine();
+            if (newLine.equals("0")) {
                 break;
+            } else {
+                newNotes.append(newLine).append("\n");
+            }
         }
 
-        return false;
+        os.createNotes(order, newNotes.toString());
     }
 }

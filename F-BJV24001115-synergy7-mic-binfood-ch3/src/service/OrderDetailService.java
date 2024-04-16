@@ -2,6 +2,7 @@ package src.service;
 
 import java.util.List;
 
+import src.model.entity.Order;
 import src.model.entity.OrderDetail;
 
 public interface OrderDetailService {
@@ -10,18 +11,14 @@ public interface OrderDetailService {
 
     // READ
     OrderDetail get(int choice);
+    OrderDetail getByChoice(Order order, int choice);
     List<OrderDetail> getList();
     boolean isEmpty();
-    int getTotalPrice();
-    int getTotalQty();
-    String getListString(boolean withColor, List<OrderDetail> orderDetails);
-    String getTotalListString(boolean withColor);
-    String getReceipt(boolean withColor, int order);
 
     // UPDATE
-    void update(int choice, String size, int qty);
+    void update(Order order, int choice, String size, int qty);
 
     // DELETE
-    void delete(int choice);
-    void clearList();
+    void deleteByChoice(Order order, int choice);
+    void clearList(Order order);
 }

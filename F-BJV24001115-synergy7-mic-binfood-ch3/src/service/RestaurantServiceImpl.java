@@ -2,6 +2,7 @@ package src.service;
 
 import src.Data;
 import src.exception.CustomerNotFoundException;
+import src.exception.RestaurantNotFoundException;
 import src.model.entity.Restaurant;
 
 import java.util.List;
@@ -16,14 +17,29 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant getById(int id) {
-        Optional<Restaurant> merchant = Data.RESTAURANTS.stream()
+        Optional<Restaurant> restaurant = Data.RESTAURANTS.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst();
-        if (merchant.isEmpty()) {
+        if (restaurant.isEmpty()) {
             throw new CustomerNotFoundException("Merchant tidak ditemukan: " + id);
         }
 
-        return merchant.get();
+        return restaurant.get();
+    }
+
+    @Override
+    public Restaurant getByChoice(int choice) {
+        choice--;
+        if (choice < 0 || choice >= Data.RESTAURANTS.size()) {
+            throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
+        }
+
+        Restaurant restaurant = Data.RESTAURANTS.get(choice);
+        if (restaurant == null) {
+            throw new RestaurantNotFoundException("Restaurant tidak ditemukan: " + choice);
+        }
+
+        return restaurant;
     }
 
     @Override

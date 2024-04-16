@@ -1,10 +1,6 @@
 package src;
 
-import src.model.entity.Order;
-import src.view.CustomerView;
-import src.view.ProfileView;
-
-import java.time.LocalDateTime;
+import src.controller.UserController;
 
 import static src.Data.*;
 
@@ -13,8 +9,7 @@ public class Main {
         initializeRestaurants();
         initializeMenu();
         initializeCustomer();
-        initializePromo(new Order(0, LocalDateTime.now(), "Singapore", Data.getCustomer(), false));
-        ProfileView prv = new ProfileView();
-        prv.displayLoginMenu();
+        UserController uc = new UserController();
+        uc.displayLoginMenu();
     }
 }

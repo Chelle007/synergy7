@@ -1,6 +1,5 @@
 package src.view;
 
-import src.model.entity.Promo;
 import static src.util.ColorUtils.printlnColor;
 
 import java.util.List;

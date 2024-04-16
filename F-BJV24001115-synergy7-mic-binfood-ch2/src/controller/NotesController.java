@@ -1,8 +1,5 @@
 package src.controller;
 
-import src.service.NotesService;
-import src.service.NotesServiceImpl;
-
 public class NotesController {
     public String displayNotes() {
         NotesService ns = new NotesServiceImpl();

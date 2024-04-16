@@ -1,5 +1,7 @@
 package src.util;
 
+import src.view.BasicView;
+
 import static src.util.ColorUtils.*;
 
 import java.util.Scanner;
@@ -19,13 +21,13 @@ public class ValidationUtils {
                 int answer = input.nextInt();
                 input.nextLine();
                 if (mustPositive && answer < 0) {
-                    printlnColor("Eror. Mohon input angka positif.", COLOR_OF_ERROR);
+                    new BasicView().printlnColor("Eror. Mohon input angka positif.", COLOR_OF_ERROR);
                     continue;
                 }
                 return answer;
             }
             catch (Exception e) {
-                printlnColor("Eror. Mohon input angka dengan benar.", COLOR_OF_ERROR);
+                new BasicView().printlnColor("Eror. Mohon input angka dengan benar.", COLOR_OF_ERROR);
                 input.reset();
                 input.nextLine();
             }
@@ -50,7 +52,7 @@ public class ValidationUtils {
             for (String element : choices) {
                 choiceList.add(element);
             }
-            printlnColor(String.format("Mohon masukkan input sesuai pilihan. ( %s )", choiceList), COLOR_OF_ERROR);
+            new BasicView().printlnColor(String.format("Mohon masukkan input sesuai pilihan. ( %s )", choiceList), COLOR_OF_ERROR);
         }
     }
 }

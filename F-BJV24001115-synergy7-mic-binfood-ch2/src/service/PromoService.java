@@ -1,7 +1,5 @@
 package src.service;
 
-import src.model.entity.Promo;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,75 +1,75 @@
 package src.view;
 
-import java.util.Scanner;
-
 import src.controller.*;
+import src.model.entity.Order;
+import src.model.entity.Restaurant;
+
 import static src.util.AdditionalUtils.formatBarrier;
-import static src.util.ColorUtils.printlnColor;
 import static src.util.ValidationUtils.checkInt;
 import static src.util.ValidationUtils.checkString;
 
 public class CustomerView {
-    public void displayRestaurantMenu() {
-        RestaurantController rc = new RestaurantController();
-
-        System.out.println(formatBarrier("Selamat datang di BinarFud"));
-        printlnColor("Silahkan pilih restaurant :", "bold");
-        rc.displayRestaurantList();
-
-    }
-
     public void displayMainMenu() {
-        PromoController pc = new PromoController();
-        MenuItemController mic = new MenuItemController();
-        CustomerController cc = new CustomerController();
+        BasicView bv = new BasicView();
 
         System.out.println(formatBarrier("Selamat datang di BinarFud"));
-
-        pc.displayPromoList();
-
-        printlnColor("Silahkan pilih makanan :", "bold");
-        mic.displayMenuItemList();
-        System.out.println("99. Pesan dan Bayar");
-        System.out.println("0. Keluar aplikasi");
-        System.out.println();
-
-        while (true) {
-            if (cc.mainMenuSelection(checkInt("=> "))) break;
-        }
+        System.out.println("1. Pilih restaurant");
+        System.out.println("2. Lihat order history");
+        System.out.println("3. Ubah profile");
+        System.out.println("4. Log out");
+        bv.printExitChoice();
     }
 
-    public void displayQtyMenu(int choice) {
+    public void displayRestaurantsMenu() {
+        RestaurantController rc = new RestaurantController();
+        BasicView bv = new BasicView();
+
+        System.out.println(formatBarrier("Pilihan Restaurant"));
+        bv.printlnColor("Silahkan pilih restaurant :", "bold");
+        rc.displayRestaurantList();
+        System.out.println("0. Kembali ke halaman utama");
+    }
+
+    public void displayMenuItemsMenu(Restaurant restaurant) {
         MenuItemController mic = new MenuItemController();
-        CustomerController cc = new CustomerController();
+        BasicView bv = new BasicView();
+
+        System.out.println(formatBarrier("Pilihan Menu"));
+
+        bv.printlnColor("Silahkan pilih makanan :", "bold");
+        mic.displayMenuItemList(restaurant);
+        System.out.println("99. Pesan dan bayar");
+        System.out.println("100. Kembali ke halaman restaurant");
+        bv.printExitChoice();
+    }
+
+    public void displayQtyMenu(Restaurant restaurant, int choice) {
+        MenuItemController mic = new MenuItemController();
 
         System.out.println(formatBarrier("Berapa pesanan anda"));
 
-        mic.displayMenuItem(choice);
+        mic.displayMenuItem(restaurant, choice);
         System.out.println("(input 0 untuk kembali)");
         System.out.println();
-
-        cc.askSizeAndQty(choice, false);
-        displayMainMenu();
     }
 
     public String askSize(String[] sizeList) {
-        return checkString("size => ", sizeList, true);
+        return checkString("size => ", sizeList, true).toUpperCase();
     }
 
     public int askQty() {
         return checkInt("qty => ", true);
     }
 
-    public void displayTotalMenu() {
-        OrderDetailController oc = new OrderDetailController();
-        NotesView nv = new NotesView();
-        CustomerController cc = new CustomerController();
+    public void displayTotalMenu(Order order) {
+        OrderController oc = new OrderController();
 
         System.out.println(formatBarrier("Konfirmasi & Pembayaran"));
 
-        System.out.println(oc.displayTotalOrderList());
+        System.out.println(oc.displayTotalOrderList(order));
 
-        nv.displayNotes();
+        System.out.println("Catatan tambahan: " +
+                (order.getNotes() == null || order.getNotes().isBlank() ? "-\n" : "\n" + order.getNotes()));
 
         System.out.println("""
                 1. Konfirmasi dan Bayar
@@ -79,68 +79,36 @@ public class CustomerView {
                 5. Tulis keterangan pesanan
                 0. Keluar aplikasi
                 """);
-
-        while (true) {
-            if (cc.totalMenuSelection(checkInt("=> "))) break;
-        }
     }
 
     public void displayConfirmationMenu() {
-        CustomerController cc = new CustomerController();
-
         System.out.println(formatBarrier("Mohon masukkan input pilihan Anda"));
 
         System.out.println("(Y) untuk lanjut");
         System.out.println("(N) untuk keluar");
-        cc.confirmationMenuSelection(checkString("=> ", new String[]{"Y", "N"}, true));
     }
 
     public void displayNotesMenu() {
-        NotesController nc = new NotesController();
-        Scanner in = new Scanner(System.in);
-
         System.out.println(formatBarrier("Keterangan Pesanan"));
-
         System.out.println("Catatan: (ketik '0' pada baris terakhir\nuntuk mengakhiri catatan)");
-
-        StringBuilder newNotes = new StringBuilder();
-        while (true) {
-            String newLine = in.nextLine();
-            if (newLine.equals("0")) {
-                break;
-            } else {
-                newNotes.append(newLine).append("\n");
-            }
-        }
-
-        nc.createNotes(newNotes.toString());
     }
 
-    public void displayEditMenu() {
-        CustomerController cc = new CustomerController();
-        OrderDetailController oc = new OrderDetailController();
+    public void displayEditMenu(Order order) {
+        OrderController oc = new OrderController();
 
         System.out.println(formatBarrier("Ubah Pesanan"));
 
-        System.out.println(oc.displayTotalOrderList());
+        System.out.println(oc.displayTotalOrderList(order));
 
         System.out.println("""
         1. Ubah detail pesanan
         2. Menghapus pesanan
         0. Kembali
         """);
-
-        while (true) {
-            if (cc.editMenuSelection(checkInt("=> "))) break;
-        }
     }
 
-    public void displayReceiptMenu() {
-        OrderDetailController oc = new OrderDetailController();
-        System.out.println(oc.displayReceipt());
-    }
-
-    public void displayExitMenu() {
-        System.out.println(formatBarrier("Terima kasih sudah menggunakan aplikasi ini"));
+    public void displayReceiptMenu(Order order) {
+        OrderController oc = new OrderController();
+        System.out.println(oc.displayReceipt(order));
     }
 }

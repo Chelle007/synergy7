@@ -41,7 +41,7 @@ public class CustomerView {
         System.out.println();
 
         cc.askSizeAndQty(choice, false);
-        displayMainMenu();
+        displayMenuItemsMenu();
     }
 
     public String askSize(List<String> sizeList) {

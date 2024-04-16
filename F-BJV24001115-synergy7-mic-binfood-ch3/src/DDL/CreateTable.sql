@@ -1,9 +1,11 @@
-CREATE TABLE Customer IF NOT EXIST {
+CREATE TABLE User IF NOT EXIST {
     id INT,
     username VARCHAR(100),
     email VARCHAR(320),
     password VARCHAR(100),
-    PRIMARY KEY(id)
+    restaurantId INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(restaurantId) REFERENCES Restaurant(id)
 };
 
 CREATE TABLE Restaurant IF NOT EXIST {
@@ -16,12 +18,12 @@ CREATE TABLE Restaurant IF NOT EXIST {
 
 CREATE TABLE MenuItem IF NOT EXIST {
     id INT,
-    restaurantId INT,
     name VARCHAR(100),
     foodType VARCHAR(100),
     priceS INT,
     priceM INT,
     priceL INT,
+    restaurantId INT,
     PRIMARY KEY(id),
     FOREIGN KEY(restaurantId) REFERENCES Restaurant(id)
 };
@@ -31,10 +33,10 @@ CREATE TABLE Order IF NOT EXIST {
     orderTime DATETIME,
     destinationAddress VARCHAR(400),
     completed BOOLEAN,
-    customerId INT,
+    userId INT,
     restaurantId INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(customerId) REFERENCES Customer(id),
+    FOREIGN KEY(userId) REFERENCES User(id),
     FOREIGN KEY(restaurantId) REFERENCES Restaurant(id)
 };
 

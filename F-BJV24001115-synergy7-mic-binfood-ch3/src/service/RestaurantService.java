@@ -9,7 +9,8 @@ public interface RestaurantService {
     void create(Restaurant restaurant);
 
     // READ
-    Restaurant getById(int choice);
+    Restaurant getById(int id);
+    Restaurant getByChoice(int choice);
     List<Restaurant> getList();
 
     // DELETE

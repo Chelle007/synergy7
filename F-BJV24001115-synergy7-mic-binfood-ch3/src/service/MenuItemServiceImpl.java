@@ -3,6 +3,7 @@ package src.service;
 import src.Data;
 import src.exception.MenuItemNotFoundException;
 import src.model.entity.MenuItem;
+import src.model.entity.Restaurant;
 
 import java.util.List;
 import java.util.Set;
@@ -15,6 +16,23 @@ public class MenuItemServiceImpl implements MenuItemService {
         }
 
         MenuItem menuItem = Data.MENU_ITEMS.get(choice);
+        if (menuItem == null) {
+            throw new MenuItemNotFoundException("MenuItem tidak ditemukan: " + choice);
+        }
+
+        return menuItem;
+    }
+
+    @Override
+    public MenuItem getByRestaurantAndChoice(Restaurant restaurant, int choice) {
+        List<MenuItem> menuItems = restaurant.getMenuItemList();
+        choice--;
+
+        if (choice < 0 || choice >= menuItems.size()) {
+            throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
+        }
+
+        MenuItem menuItem = menuItems.get(choice);
         if (menuItem == null) {
             throw new MenuItemNotFoundException("MenuItem tidak ditemukan: " + choice);
         }
