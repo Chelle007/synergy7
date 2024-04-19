@@ -1,14 +1,14 @@
-CREATE TABLE User IF NOT EXIST {
+CREATE TABLE "User" IF NOT EXISTS {
     id INT,
     username VARCHAR(100),
     email VARCHAR(320),
     password VARCHAR(100),
     restaurantId INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(restaurantId) REFERENCES Restaurant(id)
+    FOREIGN KEY(restaurantId) REFERENCES "Restaurant"(id)
 };
 
-CREATE TABLE Restaurant IF NOT EXIST {
+CREATE TABLE "Restaurant" IF NOT EXISTS {
     id INT,
     name VARCHAR(100),
     location VARCHAR(400),
@@ -16,7 +16,7 @@ CREATE TABLE Restaurant IF NOT EXIST {
     PRIMARY KEY(id)
 };
 
-CREATE TABLE MenuItem IF NOT EXIST {
+CREATE TABLE "MenuItem" IF NOT EXISTS {
     id INT,
     name VARCHAR(100),
     foodType VARCHAR(100),
@@ -25,22 +25,22 @@ CREATE TABLE MenuItem IF NOT EXIST {
     priceL INT,
     restaurantId INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(restaurantId) REFERENCES Restaurant(id)
+    FOREIGN KEY(restaurantId) REFERENCES "Restaurant"(id)
 };
 
-CREATE TABLE Order IF NOT EXIST {
+CREATE TABLE "Order" IF NOT EXISTS {
     id INT,
-    orderTime DATETIME,
+    orderTime TIMESTAMP,
     destinationAddress VARCHAR(400),
     completed BOOLEAN,
     userId INT,
     restaurantId INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(userId) REFERENCES User(id),
-    FOREIGN KEY(restaurantId) REFERENCES Restaurant(id)
+    FOREIGN KEY(userId) REFERENCES "User"(id),
+    FOREIGN KEY(restaurantId) REFERENCES "Restaurant"(id)
 };
 
-CREATE TABLE OrderDetail IF NOT EXIST {
+CREATE TABLE "OrderDetail" IF NOT EXISTS {
     id INT,
     size VARCHAR(50),
     qty INT,
@@ -48,6 +48,6 @@ CREATE TABLE OrderDetail IF NOT EXIST {
     menuItemId INT,
     orderId INT,
     PRIMARY KEY(id),
-    FOREIGN KEY(menuItemId) REFERENCES MenuItem(id),
-    FOREIGN KEY(orderId) REFERENCES Order(id)
+    FOREIGN KEY(menuItemId) REFERENCES "MenuItem"(id),
+    FOREIGN KEY(orderId) REFERENCES "Order"(id)
 };
