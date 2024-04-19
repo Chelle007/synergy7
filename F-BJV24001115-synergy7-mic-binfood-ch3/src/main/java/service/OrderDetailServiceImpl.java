@@ -10,7 +10,8 @@ import java.util.Optional;
 public class OrderDetailServiceImpl implements OrderDetailService {
     @Override
     public void create(OrderDetail orderDetail) {
-        Optional<OrderDetail> existingOrderDetail = Data.ORDER_DETAILS.stream()
+        Order order = orderDetail.getOrder();
+        Optional<OrderDetail> existingOrderDetail = order.getOrderDetailList().stream()
                 .filter(od -> od.getMenuItem().equals(orderDetail.getMenuItem()) && od.getSize().equals(orderDetail.getSize()))
                 .findFirst();
 
