@@ -26,6 +26,13 @@ public class AdditionalUtilsTest {
     }
 
     @Test
+    void formatPrice2() {
+        String result = AdditionalUtils.formatPrice(null);
+
+        assertEquals("   -   ", result);
+    }
+
+    @Test
     void formatTime() {
         LocalDateTime localDateTime = LocalDateTime.of(2024, 4, 16, 10, 20, 30);
         String result = AdditionalUtils.formatTime("yyyy-MM-dd HH:mm:ss", localDateTime);

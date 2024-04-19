@@ -75,11 +75,6 @@ public class OrderServiceImpl implements OrderService {
 
         output.append(getListString(order, withColor));
 
-        if (!Data.FREEBIES_ORDER_DETAIL.isEmpty()) {
-            output.append("FREE\n");
-            output.append(getListString(order, withColor));
-        }
-
         output.append("-".repeat(35));
         output.append("+\n");
 

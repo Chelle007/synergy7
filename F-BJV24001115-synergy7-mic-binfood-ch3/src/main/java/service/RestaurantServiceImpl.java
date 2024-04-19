@@ -20,12 +20,7 @@ public class RestaurantServiceImpl implements RestaurantService {
             throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
         }
 
-        Restaurant restaurant = Data.RESTAURANTS.get(choice);
-        if (restaurant == null) {
-            throw new RestaurantNotFoundException("Restaurant tidak ditemukan: " + choice);
-        }
-
-        return restaurant;
+        return Data.RESTAURANTS.get(choice);
     }
 
     @Override

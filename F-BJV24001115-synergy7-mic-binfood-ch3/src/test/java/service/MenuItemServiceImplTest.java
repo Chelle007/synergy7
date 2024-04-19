@@ -1,6 +1,8 @@
 package src.test.java.service;
 
 import src.main.java.Data;
+import src.main.java.exception.MenuItemNotFoundException;
+import src.main.java.model.entity.MenuItem;
 import src.main.java.model.entity.Restaurant;
 import src.main.java.service.MenuItemService;
 import src.main.java.service.MenuItemServiceImpl;
@@ -32,5 +34,15 @@ public class MenuItemServiceImplTest {
                 IndexOutOfBoundsException.class, () -> mis.getByRestaurantAndChoice(restaurant, 0));
 
         assertEquals("Pilihan invalid: -1", e.getMessage());
+    }
+
+    @Test
+    void getByRestaurantAndChoice2() {
+        int previousSize = Data.MENU_ITEMS.size();
+        MenuItem menuItem = new MenuItem("Pizza", MenuItem.FoodType.FOOD, 7000, restaurant);
+        Data.MENU_ITEMS.add(menuItem);
+        MenuItem menuItem1 = mis.getByRestaurantAndChoice(restaurant, previousSize+1);
+
+        assertEquals(menuItem, menuItem1);
     }
 }

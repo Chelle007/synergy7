@@ -1,6 +1,5 @@
 package src.main.java.service;
 
-import src.main.java.exception.MenuItemNotFoundException;
 import src.main.java.model.entity.MenuItem;
 import src.main.java.model.entity.Restaurant;
 
@@ -17,12 +16,7 @@ public class MenuItemServiceImpl implements MenuItemService {
             throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
         }
 
-        MenuItem menuItem = menuItems.get(choice);
-        if (menuItem == null) {
-            throw new MenuItemNotFoundException("MenuItem tidak ditemukan: " + choice);
-        }
-
-        return menuItem;
+        return menuItems.get(choice);
     }
 
 }

@@ -10,6 +10,7 @@ import src.main.java.service.RestaurantServiceImpl;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RestaurantServiceImplTest {
     RestaurantService rs;
@@ -35,6 +36,14 @@ public class RestaurantServiceImplTest {
         Restaurant restaurant2 = rs.getByChoice(1);
 
         assertEquals(restaurant, restaurant2);
+    }
+
+    @Test
+    void getByChoice2() {
+        Exception e = assertThrows(
+                IndexOutOfBoundsException.class, () -> rs.getByChoice(0));
+
+        assertEquals("Pilihan invalid: -1", e.getMessage());
     }
 
     @Test

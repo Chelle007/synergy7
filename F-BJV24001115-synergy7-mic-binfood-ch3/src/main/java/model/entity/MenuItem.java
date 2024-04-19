@@ -30,6 +30,16 @@ public class MenuItem {
         this.restaurant = restaurant;
     }
 
+    public MenuItem(String name, FoodType foodType, int priceS, int priceM, int priceL, Restaurant restaurant) {
+        this.id = Data.MENU_ITEMS.size();
+        this.name = name;
+        this.foodType = foodType;
+        this.priceS = priceS;
+        this.priceM = priceM;
+        this.priceL = priceL;
+        this.restaurant = restaurant;
+    }
+
     public Integer getSizePrice(String size) {
         return switch (size) {
             case "S" -> priceS;

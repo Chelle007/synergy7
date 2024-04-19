@@ -3,6 +3,7 @@ package src.test.java.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import src.main.java.Data;
+import src.main.java.exception.EmailExistedException;
 import src.main.java.exception.UsernameExistedException;
 import src.main.java.model.entity.User;
 import src.main.java.service.UserService;
@@ -31,6 +32,25 @@ public class UserServiceImplTest {
                 UsernameExistedException.class, () -> us.create(user));
 
         assertEquals("Username sudah terpakai: " + user.getUsername(), e.getMessage());
+    }
+
+    @Test
+    void create2() {
+        User user2 = new User(1, "Customer2", "Customer@gmail.com", "12345678", User.Role.CUSTOMER, null);
+
+        Exception e = assertThrows(
+                EmailExistedException.class, () -> us.create(user2));
+
+        assertEquals("Akun dengan email yang sama telah dibuat: " + user.getEmail(), e.getMessage());
+    }
+
+    @Test
+    void create3() {
+        int previousSize = Data.USERS.size();
+        User user2 = new User(1, "Customer2", "Customer2@gmail.com", "12345678", User.Role.CUSTOMER, null);
+        us.create(user2);
+
+        assertEquals(previousSize+1, Data.USERS.size());
     }
 
     @Test
