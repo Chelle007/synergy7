@@ -1,7 +1,7 @@
-package src.view;
+package src.main.java.view;
 
-import src.controller.OrderController;
-import static src.util.ValidationUtils.checkInt;
+import src.main.java.controller.OrderController;
+import static src.main.java.util.ValidationUtils.checkInt;
 
 public class OrderView {
     public int askOrderChoice() {

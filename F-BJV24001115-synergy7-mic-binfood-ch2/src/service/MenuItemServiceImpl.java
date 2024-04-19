@@ -1,9 +1,9 @@
-package src.service;
+package src.main.java.service;
 
 import src.Data;
-import src.exception.DuplicateMenuItemException;
-import src.exception.MenuItemNotFoundException;
-import src.model.entity.MenuItem;
+import src.main.java.exception.DuplicateMenuItemException;
+import src.main.java.exception.MenuItemNotFoundException;
+import src.main.java.model.entity.MenuItem;
 
 import java.util.List;
 import java.util.Set;

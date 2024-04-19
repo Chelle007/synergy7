@@ -1,13 +1,13 @@
-package src.view;
+package src.main.java.view;
 
 import java.util.List;
 import java.util.Scanner;
 
-import src.controller.*;
-import static src.util.AdditionalUtils.formatBarrier;
-import static src.util.ColorUtils.printlnColor;
-import static src.util.ValidationUtils.checkInt;
-import static src.util.ValidationUtils.checkString;
+import src.main.java.controller.*;
+import static src.main.java.util.AdditionalUtils.formatBarrier;
+import static src.main.java.util.ColorUtils.printlnColor;
+import static src.main.java.util.ValidationUtils.checkInt;
+import static src.main.java.util.ValidationUtils.checkString;
 
 public class CustomerView {
     public void displayMainMenu() {

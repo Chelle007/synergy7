@@ -1,7 +1,7 @@
-package src.util;
+package src.main.java.util;
 
-import static src.util.ColorUtils.COLOR_OF_ERROR;
-import static src.util.ColorUtils.printlnColor;
+import static src.main.java.util.ColorUtils.COLOR_OF_ERROR;
+import static src.main.java.util.ColorUtils.printlnColor;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;

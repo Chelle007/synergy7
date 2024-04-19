@@ -1,11 +1,11 @@
-package src.service;
+package src.main.java.service;
 
 import src.Data;
-import src.exception.OrderNotFoundException;
-import src.model.entity.MenuItem;
-import src.model.entity.Order;
-import static src.util.AdditionalUtils.*;
-import static src.util.ColorUtils.*;
+import src.main.java.exception.OrderNotFoundException;
+import src.main.java.model.entity.MenuItem;
+import src.main.java.model.entity.Order;
+import static src.main.java.util.AdditionalUtils.*;
+import static src.main.java.util.ColorUtils.*;
 
 import java.util.List;
 

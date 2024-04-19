@@ -1,4 +1,4 @@
-package src.service;
+package src.main.java.service;
 
 public interface NotesService {
     void create(String notes);

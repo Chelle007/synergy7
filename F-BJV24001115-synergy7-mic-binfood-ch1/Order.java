@@ -1,4 +1,4 @@
-import src.model.MenuItem;
+import src.main.java.model.MenuItem;
 
 public class Order {
     private final MenuItem menuItem;

@@ -1,4 +1,4 @@
-package src.view;
+package src.main.java.view;
 
 public class NotesView {
     public void displayNotes() {

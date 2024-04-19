@@ -1,4 +1,4 @@
-package src.service;
+package src.main.java.service;
 
 import java.util.ArrayList;
 import java.util.List;

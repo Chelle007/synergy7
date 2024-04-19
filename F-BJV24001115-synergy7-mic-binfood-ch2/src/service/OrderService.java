@@ -1,8 +1,8 @@
-package src.service;
+package src.main.java.service;
 
 import java.util.List;
 
-import src.model.entity.Order;
+import src.main.java.model.entity.Order;
 
 public interface OrderService {
     // CREATE

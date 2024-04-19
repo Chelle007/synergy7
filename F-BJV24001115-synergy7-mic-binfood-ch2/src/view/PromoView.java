@@ -1,6 +1,6 @@
-package src.view;
+package src.main.java.view;
 
-import static src.util.ColorUtils.printlnColor;
+import static src.main.java.util.ColorUtils.printlnColor;
 
 import java.util.List;
 

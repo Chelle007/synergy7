@@ -1,4 +1,4 @@
-package src.model.entity;
+package src.main.java.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;

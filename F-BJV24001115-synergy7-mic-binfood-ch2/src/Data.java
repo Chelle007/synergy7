@@ -1,6 +1,6 @@
 package src;
 
-import src.model.entity.*;
+import src.main.java.model.entity.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

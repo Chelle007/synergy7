@@ -1,6 +1,6 @@
-package src.service;
+package src.main.java.service;
 
-import src.model.entity.MenuItem;
+import src.main.java.model.entity.MenuItem;
 
 import java.util.List;
 import java.util.Set;

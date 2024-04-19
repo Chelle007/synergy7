@@ -1,9 +1,9 @@
-package src.controller;
+package src.main.java.controller;
 
-import src.service.*;
-import static src.util.AdditionalUtils.formatCurrentTime;
-import static src.util.ColorUtils.COLOR_OF_ERROR;
-import static src.util.ColorUtils.printlnColor;
+import src.main.java.service.*;
+import static src.main.java.util.AdditionalUtils.formatCurrentTime;
+import static src.main.java.util.ColorUtils.COLOR_OF_ERROR;
+import static src.main.java.util.ColorUtils.printlnColor;
 
 import java.io.File;
 import java.io.IOException;

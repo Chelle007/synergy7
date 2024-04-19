@@ -1,12 +1,12 @@
-package src.controller;
+package src.main.java.controller;
 
-import src.model.entity.Order;
-import src.service.*;
-import src.view.CustomerView;
-import src.view.OrderView;
-import static src.util.AdditionalUtils.printChoiceInvalid;
-import static src.util.ColorUtils.COLOR_OF_ERROR;
-import static src.util.ColorUtils.printlnColor;
+import src.main.java.model.entity.Order;
+import src.main.java.service.*;
+import src.main.java.view.CustomerView;
+import src.main.java.view.OrderView;
+import static src.main.java.util.AdditionalUtils.printChoiceInvalid;
+import static src.main.java.util.ColorUtils.COLOR_OF_ERROR;
+import static src.main.java.util.ColorUtils.printlnColor;
 
 import java.util.ArrayList;
 import java.util.Set;

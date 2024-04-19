@@ -1,6 +1,6 @@
 package src;
 
-import src.view.CustomerView;
+import src.main.java.view.CustomerView;
 import static src.Data.*;
 
 public class Main {

@@ -1,9 +1,9 @@
-package src.controller;
+package src.main.java.controller;
 
-import src.model.entity.MenuItem;
-import src.service.MenuItemService;
-import src.service.MenuItemServiceImpl;
-import src.view.MenuItemView;
+import src.main.java.model.entity.MenuItem;
+import src.main.java.service.MenuItemService;
+import src.main.java.service.MenuItemServiceImpl;
+import src.main.java.view.MenuItemView;
 
 import java.util.List;
 

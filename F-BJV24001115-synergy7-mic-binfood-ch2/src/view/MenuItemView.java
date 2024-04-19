@@ -1,11 +1,11 @@
-package src.view;
+package src.main.java.view;
 
 import java.util.List;
 
-import src.model.entity.MenuItem;
-import static src.util.AdditionalUtils.formatPrice;
-import static src.util.ColorUtils.COLOR_OF_PRICE;
-import static src.util.ColorUtils.formatColor;
+import src.main.java.model.entity.MenuItem;
+import static src.main.java.util.AdditionalUtils.formatPrice;
+import static src.main.java.util.ColorUtils.COLOR_OF_PRICE;
+import static src.main.java.util.ColorUtils.formatColor;
 
 public class MenuItemView {
     public void displayMenuItemList(List<MenuItem> menu) {

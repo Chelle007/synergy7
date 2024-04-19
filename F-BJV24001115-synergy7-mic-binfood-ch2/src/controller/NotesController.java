@@ -1,4 +1,4 @@
-package src.controller;
+package src.main.java.controller;
 
 public class NotesController {
     public String displayNotes() {

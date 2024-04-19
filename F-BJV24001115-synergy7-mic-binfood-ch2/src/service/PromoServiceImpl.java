@@ -1,8 +1,8 @@
-package src.service;
+package src.main.java.service;
 
 import src.Data;
-import src.model.entity.MenuItem;
-import src.model.entity.Order;
+import src.main.java.model.entity.MenuItem;
+import src.main.java.model.entity.Order;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

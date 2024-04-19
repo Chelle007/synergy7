@@ -1,4 +1,4 @@
-package src.service;
+package src.main.java.service;
 
 public class NotesServiceImpl implements NotesService {
     private String notes = "";

@@ -1,6 +1,6 @@
-package src.util;
+package src.main.java.util;
 
-import static src.util.ColorUtils.*;
+import static src.main.java.util.ColorUtils.*;
 
 import java.util.Scanner;
 import java.util.StringJoiner;
