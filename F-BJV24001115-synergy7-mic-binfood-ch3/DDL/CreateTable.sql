@@ -1,53 +1,54 @@
 CREATE TABLE "User" IF NOT EXISTS {
-    id INT,
-    username VARCHAR(100),
-    email VARCHAR(320),
-    password VARCHAR(100),
-    restaurantId INT,
+    id UUID,
+    username TEXT,
+    email TEXT,
+    password TEXT,
+    type TEXT,
+    restaurant_id UUID,
     PRIMARY KEY(id),
-    FOREIGN KEY(restaurantId) REFERENCES "Restaurant"(id)
+    FOREIGN KEY(restaurant_id) REFERENCES "Restaurant"(id)
 };
 
 CREATE TABLE "Restaurant" IF NOT EXISTS {
-    id INT,
-    name VARCHAR(100),
-    location VARCHAR(400),
+    id UUID,
+    name TEXT,
+    location TEXT,
     open BOOLEAN,
     PRIMARY KEY(id)
 };
 
 CREATE TABLE "MenuItem" IF NOT EXISTS {
-    id INT,
-    name VARCHAR(100),
-    foodType VARCHAR(100),
+    id UUID,
+    name TEXT,
+    foodType TEXT,
     priceS INT,
     priceM INT,
     priceL INT,
-    restaurantId INT,
+    restaurant_id UUID,
     PRIMARY KEY(id),
-    FOREIGN KEY(restaurantId) REFERENCES "Restaurant"(id)
+    FOREIGN KEY(restaurant_id) REFERENCES "Restaurant"(id)
 };
 
 CREATE TABLE "Order" IF NOT EXISTS {
-    id INT,
+    id UUID,
     orderTime TIMESTAMP,
-    destinationAddress VARCHAR(400),
+    destinationAddress TEXT,
     completed BOOLEAN,
-    userId INT,
-    restaurantId INT,
+    user_id UUID,
+    restaurant_id UUID,
     PRIMARY KEY(id),
-    FOREIGN KEY(userId) REFERENCES "User"(id),
-    FOREIGN KEY(restaurantId) REFERENCES "Restaurant"(id)
+    FOREIGN KEY(user_id) REFERENCES "User"(id),
+    FOREIGN KEY(restaurant_id) REFERENCES "Restaurant"(id)
 };
 
 CREATE TABLE "OrderDetail" IF NOT EXISTS {
-    id INT,
-    size VARCHAR(50),
+    id UUID,
+    size TEXT,
     qty INT,
     price INT,
-    menuItemId INT,
-    orderId INT,
+    menuItem_id UUID,
+    order_id UUID,
     PRIMARY KEY(id),
-    FOREIGN KEY(menuItemId) REFERENCES "MenuItem"(id),
-    FOREIGN KEY(orderId) REFERENCES "Order"(id)
+    FOREIGN KEY(menuItem_id) REFERENCES "MenuItem"(id),
+    FOREIGN KEY(order_id) REFERENCES "Order"(id)
 };

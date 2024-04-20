@@ -1,7 +1,6 @@
 package src.test.java.service;
 
 import src.main.java.Data;
-import src.main.java.exception.MenuItemNotFoundException;
 import src.main.java.model.entity.MenuItem;
 import src.main.java.model.entity.Restaurant;
 import src.main.java.service.MenuItemService;
