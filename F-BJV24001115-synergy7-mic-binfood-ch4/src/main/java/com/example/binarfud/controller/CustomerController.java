@@ -46,7 +46,7 @@ public class CustomerController {
                     userController.displayProfileMenu(user);
                     break;
                 case 4:
-                    userController.displayLoginMenu();
+                    userController.displayWelcomeMenu();
                     break;
                 case 0:
                     basicView.displayExitMenu();
@@ -75,7 +75,7 @@ public class CustomerController {
                         .completed(false)
                         .build();
                 orderService.create(order);
-                displayMenuItemsMenu(user, restaurant, order);
+                displayMenuItemsMenu(user, restaurant, order, 1);
                 break;
             } else {
                 basicView.printChoiceInvalid();
@@ -83,8 +83,8 @@ public class CustomerController {
         }
     }
 
-    public void displayMenuItemsMenu(User user, Restaurant restaurant, Order order) {
-        customerView.displayMenuItemsMenu(restaurant);
+    public void displayMenuItemsMenu(User user, Restaurant restaurant, Order order, int page) {
+        customerView.displayMenuItemsMenu(restaurant, page);
 
         while (true) {
             int choice = checkInt("=> ");
@@ -94,7 +94,7 @@ public class CustomerController {
             } else if (choice >= 1 && choice <= menuItemService.getByRestaurant(restaurant).size()) {
                 customerView.displayQtyMenu(restaurant, choice);
                 askSizeAndQty(order, restaurant, choice, false);
-                displayMenuItemsMenu(user, restaurant, order);
+                displayMenuItemsMenu(user, restaurant, order, 1);
                 break;
             } else if (choice == 99) {
                 if (orderDetailService.getByOrder(order).isEmpty()) {
@@ -105,6 +105,16 @@ public class CustomerController {
                 }
             } else if (choice == 100) {
                 displayRestaurantsMenu(user);
+                break;
+            } else if (choice == 101) {
+                page--;
+                int totalPage = menuItemService.getTotalPage(restaurant);
+                displayMenuItemsMenu(user, restaurant, order, (page<=0) ? page+totalPage : page);
+                break;
+            } else if (choice == 102) {
+                page++;
+                int totalPage = menuItemService.getTotalPage(restaurant);
+                displayMenuItemsMenu(user, restaurant, order, (page>totalPage) ? page-totalPage : page);
                 break;
             }
             else {
@@ -155,7 +165,7 @@ public class CustomerController {
                     displayConfirmationMenu(user, restaurant, order);
                     break;
                 case 2:
-                    displayMenuItemsMenu(user, restaurant, order);
+                    displayMenuItemsMenu(user, restaurant, order, 1);
                     break;
                 case 3:
                     displayEditMenu(user, restaurant, order);
@@ -163,7 +173,7 @@ public class CustomerController {
                 case 4:
                     orderDetailService.safeDeleteAllOrderDetailsByOrder(order);
                     orderService.clearNotes(order);
-                    displayMenuItemsMenu(user, restaurant, order);
+                    displayMenuItemsMenu(user, restaurant, order, 1);
                     break;
                 case 5:
                     displayNotesMenu(order);
@@ -214,7 +224,7 @@ public class CustomerController {
                     break;
                 case 2:
                     orderDetailService.safeDeleteByOrderAndChoice(order, orderDetailController.askOrderChoice(order));
-                    if (orderDetailService.getByOrder(order).isEmpty()) displayMenuItemsMenu(user, restaurant, order);
+                    if (orderDetailService.getByOrder(order).isEmpty()) displayMenuItemsMenu(user, restaurant, order, 1);
                     else displayEditMenu(user, restaurant, order);
                     break;
                 case 0:

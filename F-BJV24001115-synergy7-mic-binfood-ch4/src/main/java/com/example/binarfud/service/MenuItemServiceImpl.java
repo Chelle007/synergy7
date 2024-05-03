@@ -7,6 +7,9 @@ import com.example.binarfud.model.entity.MenuItem;
 import com.example.binarfud.repository.MenuItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -50,6 +53,12 @@ public class MenuItemServiceImpl implements MenuItemService {
     }
 
     @Override
+    public List<MenuItem> getByRestaurantAndPage(Restaurant restaurant, int page) {
+        Pageable pageable = PageRequest.of(page-1, 5);
+        return menuItemRepository.findByRestaurant(restaurant, pageable);
+    }
+
+    @Override
     public boolean menuItemNameExistedInRestaurant(Restaurant restaurant, String name) {
         return menuItemRepository.existsByRestaurantAndName(restaurant, name);
     }
@@ -90,6 +99,11 @@ public class MenuItemServiceImpl implements MenuItemService {
             }
         }
         throw new IllegalArgumentException("Tipe menu item invalid: " + type);
+    }
+
+    @Override
+    public int getTotalPage(Restaurant restaurant) {
+        return (int) Math.ceil((double) getByRestaurant(restaurant).size() / menuItemCountPerPage);
     }
 
     @Override

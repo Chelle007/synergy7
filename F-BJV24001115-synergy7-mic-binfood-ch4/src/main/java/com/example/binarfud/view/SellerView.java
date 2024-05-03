@@ -20,6 +20,7 @@ public class SellerView {
     @Autowired MenuItemView menuItemView;
     @Autowired BasicView basicView;
     @Autowired RestaurantController restaurantController;
+    @Autowired MenuItemController menuItemController;
 
     Scanner in = new Scanner(System.in);
 
@@ -44,7 +45,7 @@ public class SellerView {
         System.out.println("0. Kembali ke halaman utama");
     }
 
-    public void displayEditRestaurantMenu(Restaurant restaurant, List<MenuItem> menu) {
+    public void displayEditRestaurantMenu(Restaurant restaurant, int page) {
         System.out.println(formatBarrier("Edit Restaurant"));
 
         System.out.println("Nama  : " + restaurant.getName());
@@ -52,7 +53,7 @@ public class SellerView {
         System.out.println("Status: " + (restaurant.isOpen() ? "Buka" : "Tutup"));
         System.out.println();
 
-        menuItemView.displayMenuItemList(menu);
+        menuItemController.displayMenuItemList(restaurant, page);
         System.out.println();
 
         System.out.println("1. Tambah menu item");
@@ -60,6 +61,7 @@ public class SellerView {
         System.out.println("3. Menghapus menu item");
         System.out.println("4. Ubah detail restaurant");
         System.out.println("5. Kembali ke menu pilihan restaurant");
+        System.out.println("(Input '6' untuk ke halaman sebelumnya,\n'7' untuk ke halaman berikutnya)");
     }
 
     public String askName() {

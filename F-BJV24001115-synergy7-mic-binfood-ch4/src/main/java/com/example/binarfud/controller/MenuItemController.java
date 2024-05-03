@@ -28,9 +28,9 @@ public class MenuItemController {
         menuItemService.create(menuItem);
     }
 
-    public void displayMenuItemList(Restaurant restaurant) {
-        List<MenuItem> menu = menuItemService.getByRestaurant(restaurant);
-        menuItemView.displayMenuItemList(menu);
+    public void displayMenuItemList(Restaurant restaurant, int page) {
+        List<MenuItem> menu = menuItemService.getByRestaurantAndPage(restaurant, page);
+        menuItemView.displayMenuItemList(menu, page, menuItemService.menuItemCountPerPage, menuItemService.getTotalPage(restaurant));
     }
 
     public void displayMenuItem(Restaurant restaurant, int choice) {

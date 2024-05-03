@@ -36,7 +36,7 @@ public class SellerController {
                     userController.displayProfileMenu(user);
                     break;
                 case 4:
-                    userController.displayLoginMenu();
+                    userController.displayWelcomeMenu();
                     break;
                 case 0:
                     basicView.displayExitMenu();
@@ -85,7 +85,7 @@ public class SellerController {
                 break;
             } else if (choice >= 1 && choice <= restaurantService.getByUser(user).size()) {
                 Restaurant restaurant = restaurantService.getByUserAndChoice(user, choice);
-                displayEditRestaurantMenu(user, restaurant);
+                displayEditRestaurantMenu(user, restaurant, 1);
                 break;
             } else {
                 basicView.printChoiceInvalid();
@@ -93,8 +93,8 @@ public class SellerController {
         }
     }
 
-    public void displayEditRestaurantMenu(User user, Restaurant restaurant) {
-        sellerView.displayEditRestaurantMenu(restaurant, menuItemService.getByRestaurant(restaurant));
+    public void displayEditRestaurantMenu(User user, Restaurant restaurant, int page) {
+        sellerView.displayEditRestaurantMenu(restaurant, page);
 
         boolean validChoice;
         do {
@@ -105,12 +105,12 @@ public class SellerController {
                 case 1:
                     basicView.printZeroOption();
                     askAddMenuItemMenu(restaurant);
-                    displayEditRestaurantMenu(user, restaurant);
+                    displayEditRestaurantMenu(user, restaurant, 1);
                     break;
                 case 2:
                     int choice2 = askSelectedMenuItem(restaurant);
                     if (choice2 == 0) {
-                        displayEditRestaurantMenu(user, restaurant);
+                        displayEditRestaurantMenu(user, restaurant, 1);
                     } else {
                         MenuItem menuItem = menuItemService.getByRestaurantAndChoice(restaurant, choice2);
                         displayEditMenuItemMenu(user, restaurant, menuItem);
@@ -119,10 +119,10 @@ public class SellerController {
                 case 3:
                     int choice3 = askSelectedMenuItem(restaurant);
                     if (choice3 == 0) {
-                        displayEditRestaurantMenu(user, restaurant);
+                        displayEditRestaurantMenu(user, restaurant, 1);
                     } else {
                         menuItemService.safeDelete(menuItemService.getByRestaurantAndChoice(restaurant, choice3));
-                        displayEditRestaurantMenu(user, restaurant);
+                        displayEditRestaurantMenu(user, restaurant, 1);
                     }
                     break;
                 case 4:
@@ -130,6 +130,16 @@ public class SellerController {
                     break;
                 case 5:
                     displayRestaurantsMenu(user);
+                    break;
+                case 6:
+                    page--;
+                    int totalPage = menuItemService.getTotalPage(restaurant);
+                    displayEditRestaurantMenu(user, restaurant, (page<=0) ? page+totalPage : page);
+                    break;
+                case 7:
+                    page++;
+                    int totalPage2 = menuItemService.getTotalPage(restaurant);
+                    displayEditRestaurantMenu(user, restaurant, (page>totalPage2) ? page-totalPage2 : page);
                     break;
                 default:
                     basicView.printChoiceInvalid();
@@ -218,10 +228,10 @@ public class SellerController {
                     break;
                 case 6:
                     menuItemService.safeDelete(menuItem);
-                    displayEditRestaurantMenu(user, restaurant);
+                    displayEditRestaurantMenu(user, restaurant, 1);
                     break;
                 case 0:
-                    displayEditRestaurantMenu(user, restaurant);
+                    displayEditRestaurantMenu(user, restaurant, 1);
                     break;
                 default:
                     basicView.printChoiceInvalid();
@@ -291,7 +301,7 @@ public class SellerController {
                     displayRestaurantsMenu(user);
                     break;
                 case 0:
-                    displayEditRestaurantMenu(user, restaurant);
+                    displayEditRestaurantMenu(user, restaurant, 1);
                     break;
                 default:
                     basicView.printChoiceInvalid();

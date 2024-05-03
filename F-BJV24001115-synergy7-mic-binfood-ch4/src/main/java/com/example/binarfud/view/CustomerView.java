@@ -37,13 +37,14 @@ public class CustomerView {
         System.out.println("0. Kembali ke halaman utama");
     }
 
-    public void displayMenuItemsMenu(Restaurant restaurant) {
+    public void displayMenuItemsMenu(Restaurant restaurant, int page) {
         System.out.println(formatBarrier("Pilihan Menu"));
 
         basicView.printlnColor("Silahkan pilih makanan :", "bold");
-        menuItemController.displayMenuItemList(restaurant);
+        menuItemController.displayMenuItemList(restaurant, page);
         System.out.println("99. Pesan dan bayar");
         System.out.println("100. Kembali ke halaman restaurant");
+        System.out.println("(Input '101' untuk ke halaman sebelumnya,\n'102' untuk ke halaman berikutnya)");
         basicView.printExitChoice();
     }
 
