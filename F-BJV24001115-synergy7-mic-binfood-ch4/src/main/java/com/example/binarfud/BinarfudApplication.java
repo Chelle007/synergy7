@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BinarfudApplication {
 
 	public static void main(String[] args) {
-		// Uncomment ini untuk initialize data & comment lagi
 //		DataInitializer dataInitializer = SpringApplication.run(BinarfudApplication.class, args).getBean(DataInitializer.class);
 //		dataInitializer.initData();
 
