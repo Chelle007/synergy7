@@ -19,8 +19,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         if (usernameExists(user.getUsername())) {
+            log.error("Username sudah terpakai: {}", user.getUsername());
             throw new UsernameExistedException("Username sudah terpakai: " + user.getUsername());
         } else if (emailExists(user.getEmail())) {
+            log.error("Akun dengan email yang sama telah dibuat: {}", user.getEmail());
             throw new EmailExistedException("Akun dengan email yang sama telah dibuat: " + user.getEmail());
         }
 
@@ -62,12 +64,14 @@ public class UserServiceImpl implements UserService {
                 return enumValue;
             }
         }
+        log.error("Role invalid: {}", role);
         throw new IllegalArgumentException("Role invalid: " + role);
     }
 
     @Override
     public void updateUsername(User user, String username) {
         if (userRepository.existsByUsername(username)) {
+            log.error("Username sudah terpakai: {}", user.getUsername());
             throw new UsernameExistedException("Username sudah terpakai: " + username);
         }
         user.setUsername(username);
@@ -78,6 +82,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateEmail(User user, String email) {
         if (userRepository.existsByEmail(email)) {
+            log.error("Akun dengan email yang sama telah dibuat: {}", user.getEmail());
             throw new EmailExistedException("Akun dengan email yang sama telah dibuat: " + email);
         }
         user.setEmail(email);

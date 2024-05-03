@@ -49,7 +49,6 @@ public class ValidationView {
             }
             catch (Exception e) {
                 new BasicView().printlnColor("Eror. Mohon input angka dengan benar.", COLOR_OF_ERROR);
-                log.error(e.getMessage());
                 input.reset();
                 input.nextLine();
             }

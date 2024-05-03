@@ -1,7 +1,6 @@
 package com.example.binarfud.service;
 
 import com.example.binarfud.exception.MenuItemNameExistedException;
-import com.example.binarfud.exception.RestaurantNotFoundException;
 import com.example.binarfud.model.entity.*;
 import com.example.binarfud.model.entity.MenuItem;
 import com.example.binarfud.repository.MenuItemRepository;
@@ -9,10 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +24,7 @@ public class MenuItemServiceImpl implements MenuItemService {
     @Override
     public MenuItem create(MenuItem menuItem) {
         if (menuItemRepository.existsByName(menuItem.getName())) {
+            log.error("Nama menu item telah dipakai: {}", menuItem.getName());
             throw new MenuItemNameExistedException("Nama menu item telah dipakai: " + menuItem.getName());
         }
 
@@ -41,6 +39,7 @@ public class MenuItemServiceImpl implements MenuItemService {
         choice--;
 
         if (choice < 0 || choice >= menuItems.size()) {
+            log.error("Pilihan invalid: {}", choice);
             throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
         }
 
@@ -98,6 +97,7 @@ public class MenuItemServiceImpl implements MenuItemService {
                 return enumValue;
             }
         }
+        log.error("Tipe menu item invalid: {}", type);
         throw new IllegalArgumentException("Tipe menu item invalid: " + type);
     }
 

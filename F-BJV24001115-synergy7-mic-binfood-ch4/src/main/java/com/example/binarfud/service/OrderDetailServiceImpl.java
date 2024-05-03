@@ -2,6 +2,7 @@ package com.example.binarfud.service;
 
 import com.example.binarfud.model.entity.*;
 import com.example.binarfud.repository.OrderDetailRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class OrderDetailServiceImpl implements OrderDetailService {
     @Autowired
     OrderDetailRepository orderDetailRepository;
@@ -37,6 +39,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         choice--;
 
         if (choice < 0 || choice >= orderDetails.size()) {
+            log.error("Pilihan invalid: {}", choice);
             throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
         }
 

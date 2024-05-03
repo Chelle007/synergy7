@@ -29,7 +29,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(restaurants.get(choice).getId());
         int finalChoice = choice;
-        return optionalRestaurant.orElseThrow(() -> new IndexOutOfBoundsException("Pilihan invalid: " + (finalChoice)));
+
+        if (optionalRestaurant.isPresent()) return optionalRestaurant.get();
+
+        log.error("Pilihan invalid: {}", (finalChoice));
+        throw new IndexOutOfBoundsException("Pilihan invalid: " + (finalChoice));
     }
 
     @Override
@@ -39,7 +43,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(restaurants.get(choice).getId());
         int finalChoice = choice;
-        return optionalRestaurant.orElseThrow(() -> new IndexOutOfBoundsException("Pilihan invalid: " + (finalChoice)));
+
+        if (optionalRestaurant.isPresent()) return optionalRestaurant.get();
+
+        log.error("Pilihan invalid: {}", (finalChoice));
+        throw new IndexOutOfBoundsException("Pilihan invalid: " + (finalChoice));
     }
 
     @Override
@@ -63,6 +71,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         choice--;
 
         if (choice < 0 || choice >= restaurants.size()) {
+            log.error("Pilihan invalid: {}", (choice));
             throw new IndexOutOfBoundsException("Pilihan invalid: " + choice);
         }
 
