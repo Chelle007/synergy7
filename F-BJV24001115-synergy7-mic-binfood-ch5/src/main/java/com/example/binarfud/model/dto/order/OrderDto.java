@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-public class orderDto {
+public class OrderDto {
     private UUID id;
 
     private LocalDateTime orderTime;

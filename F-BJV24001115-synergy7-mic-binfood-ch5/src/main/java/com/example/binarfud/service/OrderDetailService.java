@@ -1,21 +1,26 @@
 package com.example.binarfud.service;
 
+import com.example.binarfud.model.dto.orderDetail.OrderDetailCreateRequestDto;
+import com.example.binarfud.model.dto.orderDetail.OrderDetailDto;
+import com.example.binarfud.model.dto.orderDetail.OrderDetailUpdateRequestDto;
 import com.example.binarfud.model.entity.*;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface OrderDetailService {
     // CREATE
-    OrderDetail create(OrderDetail orderDetail);
+    OrderDetailDto create(OrderDetailCreateRequestDto orderDetailCreateRequestDto);
 
     // READ
-    OrderDetail getByChoice(Order order, int choice);
-    List<OrderDetail> getByOrder(Order order);
+    OrderDetail getById(UUID id);
+    OrderDetailDto getDtoById(UUID id);
+    List<OrderDetailDto> getListByOrder(Order order);
+    List<OrderDetailDto> getListByMenuItem(MenuItem menuItem);
 
     // UPDATE
-    void update(Order order, int choice, String size, int qty);
+    OrderDetailDto update(UUID id, OrderDetailUpdateRequestDto orderDetailUpdateRequestDto);
 
     // DELETE
-    void safeDeleteByOrderAndChoice(Order order, int choice);
-    void safeDeleteAllOrderDetailsByOrder(Order order);
+    void safeDeleteById(UUID id);
 }

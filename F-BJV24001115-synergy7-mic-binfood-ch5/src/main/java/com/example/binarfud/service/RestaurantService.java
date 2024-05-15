@@ -17,7 +17,7 @@ public interface RestaurantService {
     RestaurantDto getDtoById(UUID id);
     List<RestaurantDto> getList();
     List<RestaurantDto> getOpenList();
-    List<RestaurantDto> getByUser(User user);
+    List<RestaurantDto> getListByUser(User user);
 
     // UPDATE
     RestaurantDto update(UUID id, RestaurantUpdateRequestDto restaurantUpdateRequestDto);

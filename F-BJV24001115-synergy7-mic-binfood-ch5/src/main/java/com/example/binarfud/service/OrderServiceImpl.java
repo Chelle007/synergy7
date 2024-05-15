@@ -1,136 +1,105 @@
 package com.example.binarfud.service;
 
+import com.example.binarfud.exception.UsernameExistedException;
+import com.example.binarfud.model.dto.order.OrderCompleteRequestDto;
+import com.example.binarfud.model.dto.order.OrderCreateRequestDto;
+import com.example.binarfud.model.dto.order.OrderDto;
 import com.example.binarfud.model.entity.*;
 import com.example.binarfud.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-
-import static com.example.binarfud.util.AdditionalUtils.*;
-import static com.example.binarfud.util.AdditionalUtils.formatBarrier;
-import static com.example.binarfud.util.ColorUtils.*;
 
 @Service
 @Slf4j
 public class OrderServiceImpl implements OrderService {
     @Autowired OrderRepository orderRepository;
-    @Autowired OrderDetailService orderDetailService;
+    @Autowired UserService userService;
+    @Autowired RestaurantService restaurantService;
+    @Autowired ModelMapper modelMapper;
 
     @Override
-    public Order create(Order order) {
-        return orderRepository.save(order);
-    }
+    public OrderDto create(OrderCreateRequestDto orderCreateRequestDto) {
+        Order order = new Order();
+        order.setUser(userService.getById(orderCreateRequestDto.getUserId()));
+        order.setRestaurant(restaurantService.getById(orderCreateRequestDto.getRestaurantId()));
 
-    @Override
-    public void createNotes(Order order, String string) {
-        order.setNotes(string);
-        orderRepository.save(order);
+        order.setUser(userService.getById(orderCreateRequestDto.getUserId()));
+        order.setRestaurant(restaurantService.getById(orderCreateRequestDto.getRestaurantId()));
+
+        order = orderRepository.save(order);
+        log.info("Order {} successfully added", order.getId());
+
+        return modelMapper.map(order, OrderDto.class);
     }
 
     @Override
     public Order getById(UUID id) {
-        return orderRepository.getReferenceById(id);
-    }
-
-    @Override
-    public int getTotalPrice(Order order) {
-        Integer totalPrice = orderRepository.getTotalPrice(order.getId());
-        return totalPrice != null ? totalPrice : 0;
-    }
-
-    @Override
-    public int getTotalQty(Order order) {
-        Integer totalQty = orderRepository.getTotalQty(order.getId());
-        return totalQty != null ? totalQty : 0;
-    }
-
-    @Override
-    public String getListString(Order order, boolean withColor) {
-        StringBuilder output = new StringBuilder();
-        String format = "%-19s %-7s %s%n";
-        if (withColor) format = "%-21s %-16s %s%n";
-
-        List<OrderDetail> orderDetails = orderDetailService.getByOrder(order);
-
-        for (int i = 0; i< orderDetails.size(); i++) {
-            OrderDetail orderDetail = orderDetails.get(i);
-            MenuItem menuItem = orderDetail.getMenuItem();
-            int price = orderDetail.getPrice();
-            String qty = Integer.toString(orderDetail.getQty());
-
-            output.append(String.format(
-                    format,
-                    (i+1) + ". " + menuItem.getName() + " (" + orderDetail.getSize() + ")",
-                    withColor ? formatColor(qty, COLOR_OF_QTY) : qty,
-                    withColor ? formatColor(formatPrice(price), COLOR_OF_PRICE) : formatPrice(price)
-            ));
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+        if (optionalOrder.isPresent()) {
+            return optionalOrder.get();
         }
 
-        return output.toString();
+        log.error("Order not found: {}", (id));
+        throw new IllegalArgumentException("Order not found: " + id);
     }
 
     @Override
-    public String getTotalListString(Order order, boolean withColor) {
-        StringBuilder output = new StringBuilder();
-
-        output.append(getListString(order, withColor));
-
-        output.append("-".repeat(35));
-        output.append("+\n");
-
-        int totalQty = getTotalQty(order);
-        int totalPrice = getTotalPrice(order);
-        output.append(String.format(
-                withColor ? "%-21s %-16s %s%n" : "%-19s %-7s %s%n",
-                "Total ",
-                withColor ? formatColor(Integer.toString(totalQty), COLOR_OF_QTY) : Integer.toString(totalQty),
-                withColor ? formatColor(formatPrice(totalPrice), COLOR_OF_PRICE) : formatPrice(totalPrice)
-        ));
-
-        return output.toString().replace("\r", "");
+    public OrderDto getDtoById(UUID id) {
+        return modelMapper.map(getById(id), OrderDto.class);
     }
 
     @Override
-    public String getReceipt(Order order, boolean withColor, int count) {
-        String output =  formatBarrier("BinarFud") +
-                "Waktu : " + formatTime("yyyy-MM-dd HH:mm:ss", LocalDateTime.now()) + "\n" +
-                "Order : " + count + "\n" +
-                """
-                
-                Terima kasih sudah memesan di BinarFud
-
-                Di bawah ini adalah pesanan anda
-                
-                """ +
-                getTotalListString(order, withColor) +
-                """
-                Pembayaran : BinarCash
-                
-                ** Simpan struk ini sebagai bukti pembayaran **""";
-
-        return output.replace("\r", "");
+    public List<OrderDto> getList() {
+        return orderRepository.findAll().stream()
+                .map(order -> modelMapper.map(order, OrderDto.class))
+                .toList();
     }
 
     @Override
-    public List<Order> getByUser(User user) {
-        return orderRepository.findByUserAndCompleted(user, true);
+    public List<OrderDto> getCompletedListByUser(User user) {
+        return orderRepository.findByUserAndCompleted(user, true).stream()
+                .map(order -> modelMapper.map(order, OrderDto.class))
+                .toList();
     }
 
     @Override
-    public void completeOrder(Order order) {
-        order.setOrderTime(LocalDateTime.now());
-        order.setCompleted(true);
+    public List<OrderDto> getCompletedListByRestaurant(Restaurant restaurant) {
+        return orderRepository.findByRestaurantAndCompleted(restaurant, true).stream()
+                .map(order -> modelMapper.map(order, OrderDto.class))
+                .toList();
+    }
+
+    @Override
+    public OrderDto completeOrder(UUID id, OrderCompleteRequestDto orderCompleteRequestDto) {
+        Order existingOrder = getById(id);
+
+        if (existingOrder.isCompleted()) {
+            log.error("Order has been completed: {}", existingOrder.getId());
+            throw new UsernameExistedException("Order has been completed: " + existingOrder.getId());
+        }
+
+        existingOrder.setDestinationAddress(orderCompleteRequestDto.getDestinationAddress());
+        existingOrder.setNotes(orderCompleteRequestDto.getNotes());
+        existingOrder.setOrderTime(LocalDateTime.now());
+        existingOrder.setCompleted(true);
+
+        Order updatedOrder = orderRepository.save(existingOrder);
+        log.info("Order {} has been completed", updatedOrder.getId());
+        return modelMapper.map(updatedOrder, OrderDto.class);
+    }
+
+    @Override
+    public void safeDeleteById(UUID id) {
+        Order order = getById(id);
+        order.setDeleted(true);
         orderRepository.save(order);
-        log.info("Order {} telah dipesan", order.getId());
-    }
-
-    @Override
-    public void clearNotes(Order order) {
-        order.setNotes("");
-        orderRepository.save(order);
+        log.info("Order {} has been deleted", id);
     }
 }

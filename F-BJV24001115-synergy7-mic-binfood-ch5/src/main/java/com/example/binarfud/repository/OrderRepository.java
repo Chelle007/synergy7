@@ -1,6 +1,7 @@
 package com.example.binarfud.repository;
 
 import com.example.binarfud.model.entity.Order;
+import com.example.binarfud.model.entity.Restaurant;
 import com.example.binarfud.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,4 +21,5 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     Integer getTotalQty(@Param("orderId") UUID orderID);
 
     List<Order> findByUserAndCompleted(User user, boolean completed);
+    List<Order> findByRestaurantAndCompleted(Restaurant restaurant, boolean completed);
 }

@@ -13,5 +13,6 @@ import java.util.UUID;
 @Repository
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, UUID> {
     List<OrderDetail> findByOrder(Order order);
+    List<OrderDetail> findByMenuItem(MenuItem menuItem);
     Optional<OrderDetail> findByOrderAndMenuItemAndSize(Order order, MenuItem menuItem, String size);
 }

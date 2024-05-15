@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class orderDetailDto {
+public class OrderDetailDto {
     private UUID id;
 
     private String size;
