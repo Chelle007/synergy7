@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -89,6 +90,35 @@ public class MenuItemServiceImpl implements MenuItemService {
     @Override
     public int getTotalPage(Restaurant restaurant, int menuItemCountPerPage) {
         return (int) Math.ceil((double) getListByRestaurant(restaurant).size() / menuItemCountPerPage);
+    }
+
+    @Override
+    public int getTotalPrice(UUID id, LocalDateTime startTime, LocalDateTime endTime) {
+        if (startTime == null) {
+            startTime = LocalDateTime.of(2000, 1, 1, 0, 0);
+        }
+
+        if (endTime == null) {
+            endTime = LocalDateTime.now();
+        }
+
+        log.info("Start: {}", startTime);
+        log.info("End: {}", endTime);
+
+        return Optional.ofNullable(menuItemRepository.getTotalPrice(id, startTime, endTime)).orElse(0);
+    }
+
+    @Override
+    public int getTotalQty(UUID id, LocalDateTime startTime, LocalDateTime endTime) {
+        if (startTime == null) {
+            startTime = LocalDateTime.of(2000, 1, 1, 0, 0);
+        }
+
+        if (endTime == null) {
+            endTime = LocalDateTime.now();
+        }
+
+        return Optional.ofNullable(menuItemRepository.getTotalQty(id, startTime, endTime)).orElse(0);
     }
 
     @Override

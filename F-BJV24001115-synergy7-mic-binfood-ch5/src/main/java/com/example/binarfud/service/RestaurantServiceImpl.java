@@ -1,9 +1,9 @@
 package com.example.binarfud.service;
 
 import com.example.binarfud.exception.RestaurantNotFoundException;
-import com.example.binarfud.model.dto.restaurant.RestaurantCreateRequestDto;
-import com.example.binarfud.model.dto.restaurant.RestaurantDto;
-import com.example.binarfud.model.dto.restaurant.RestaurantUpdateRequestDto;
+import com.example.binarfud.model.dto.menuItem.MenuItemDto;
+import com.example.binarfud.model.dto.menuItem.MenuItemIncomeDto;
+import com.example.binarfud.model.dto.restaurant.*;
 import com.example.binarfud.model.entity.*;
 import com.example.binarfud.repository.RestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -11,15 +11,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 @Slf4j
 public class RestaurantServiceImpl implements RestaurantService {
     @Autowired RestaurantRepository restaurantRepository;
     @Autowired UserService userService;
+    @Autowired MenuItemService menuItemService;
     @Autowired ModelMapper modelMapper;
 
     @Override
@@ -71,6 +71,39 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantRepository.findByOwner(user).stream()
                 .map(restaurant -> modelMapper.map(restaurant, RestaurantDto.class))
                 .toList();
+    }
+
+    @Override
+    public RestaurantReportDto getReport(Restaurant restaurant, LocalDateTime startTime, LocalDateTime endTime) {
+        RestaurantReportDto restaurantReportDto = new RestaurantReportDto();
+        restaurantReportDto.setRestaurantId(restaurant.getId());
+        restaurantReportDto.setStartTime(startTime);
+        restaurantReportDto.setEndTime(endTime);
+
+        List<MenuItemIncomeDto> totalMenuItemIncome = new ArrayList<>();
+        int totalMenuItemQty = 0;
+        int totalIncome = 0;
+
+        for (MenuItemDto menuItem : menuItemService.getListByRestaurant(restaurant)) {
+            MenuItemIncomeDto menuItemIncome = new MenuItemIncomeDto();
+
+            int qty = menuItemService.getTotalQty(menuItem.getId(), startTime, endTime);
+            int price = menuItemService.getTotalPrice(menuItem.getId(), startTime, endTime);
+
+            menuItemIncome.setMenuItemName(menuItem.getName());
+            menuItemIncome.setQty(qty);
+            menuItemIncome.setTotalPrice(price);
+
+            totalMenuItemIncome.add(menuItemIncome);
+            totalMenuItemQty += qty;
+            totalIncome += price;
+        }
+
+        restaurantReportDto.setTotalMenuItemQty(totalMenuItemQty);
+        restaurantReportDto.setTotalIncome(totalIncome);
+        restaurantReportDto.setTotalMenuItemIncome(totalMenuItemIncome);
+
+        return restaurantReportDto;
     }
 
     @Override

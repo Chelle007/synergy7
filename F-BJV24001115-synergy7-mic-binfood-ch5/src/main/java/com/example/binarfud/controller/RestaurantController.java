@@ -1,8 +1,6 @@
 package com.example.binarfud.controller;
 
-import com.example.binarfud.model.dto.restaurant.RestaurantCreateRequestDto;
-import com.example.binarfud.model.dto.restaurant.RestaurantDto;
-import com.example.binarfud.model.dto.restaurant.RestaurantUpdateRequestDto;
+import com.example.binarfud.model.dto.restaurant.*;
 import com.example.binarfud.service.RestaurantService;
 import com.example.binarfud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,6 +79,19 @@ public class RestaurantController {
         Map<String, Object> data = new HashMap<>();
         RestaurantDto restaurant = restaurantService.getDtoById(restaurantId);
         data.put("restaurant", restaurant);
+        response.put("data", data);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/{restaurant_id}/report")
+    public ResponseEntity<Map<String, Object>> generateRestaurantReport(@PathVariable("restaurant_id") UUID restaurantId, @RequestParam(required = false) LocalDateTime startTime, @RequestParam(required = false) LocalDateTime endTime) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+
+        Map<String, Object> data = new HashMap<>();
+        RestaurantReportDto restaurantReport = restaurantService.getReport(restaurantService.getById(restaurantId), startTime, endTime);
+        data.put("restaurantReport", restaurantReport);
         response.put("data", data);
 
         return new ResponseEntity<>(response, HttpStatus.OK);

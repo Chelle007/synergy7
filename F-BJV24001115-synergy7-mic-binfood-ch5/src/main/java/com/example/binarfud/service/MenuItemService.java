@@ -5,6 +5,7 @@ import com.example.binarfud.model.dto.menuItem.MenuItemDto;
 import com.example.binarfud.model.dto.menuItem.MenuItemUpdateRequestDto;
 import com.example.binarfud.model.entity.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,8 @@ public interface MenuItemService {
     List<MenuItemDto> getListByRestaurantAndPage(Restaurant restaurant, int page, int menuItemPerPage);
     List<String> getAvailableSize(MenuItem menuItem);
     int getTotalPage(Restaurant restaurant, int menuItemCountPerPage);
+    int getTotalPrice(UUID id, LocalDateTime startTime, LocalDateTime endTime);
+    int getTotalQty(UUID id, LocalDateTime startTime, LocalDateTime endTime);
 
     // UPDATE
     MenuItemDto update(UUID id, MenuItemUpdateRequestDto menuItemUpdateRequestDto);
