@@ -1,5 +1,6 @@
 package com.example.binarfud.service;
 
+import com.example.binarfud.exception.OrderNotFoundException;
 import com.example.binarfud.exception.UsernameExistedException;
 import com.example.binarfud.model.dto.order.OrderCompleteRequestDto;
 import com.example.binarfud.model.dto.order.OrderCreateRequestDto;
@@ -47,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         log.error("Order not found: {}", (id));
-        throw new IllegalArgumentException("Order not found: " + id);
+        throw new OrderNotFoundException("Order not found: " + id);
     }
 
     @Override

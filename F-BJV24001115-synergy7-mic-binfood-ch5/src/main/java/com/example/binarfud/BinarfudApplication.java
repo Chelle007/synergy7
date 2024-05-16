@@ -14,9 +14,6 @@ public class BinarfudApplication {
 //		DataInitializer dataInitializer = SpringApplication.run(BinarfudApplication.class, args).getBean(DataInitializer.class);
 //		dataInitializer.initData();
 
-//		UserController userController = SpringApplication.run(BinarfudApplication.class, args).getBean(UserController.class);
-//		userController.displayWelcomeMenu();
-
 		SpringApplication.run(BinarfudApplication.class, args);
 	}
 

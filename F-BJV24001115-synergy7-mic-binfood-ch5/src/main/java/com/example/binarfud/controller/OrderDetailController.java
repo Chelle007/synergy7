@@ -9,7 +9,6 @@ import com.example.binarfud.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -17,7 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@Controller
+@RestController
+@RequestMapping("order_detail")
 public class OrderDetailController {
     @Autowired OrderDetailService orderDetailService;
     @Autowired OrderService orderService;
@@ -35,7 +35,7 @@ public class OrderDetailController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PostMapping("/order/{order_id}")
+    @GetMapping("/order/{order_id}")
     public ResponseEntity<Map<String, Object>> getOrderDetailsByOrder(@PathVariable("order_id") UUID orderId) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -48,7 +48,7 @@ public class OrderDetailController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("/menuItem/{menu_item_id}")
+    @GetMapping("/menuItem/{menu_item_id}")
     public ResponseEntity<Map<String, Object>> getOrderDetailsByMenuItem(@PathVariable("menu_item_id") UUID menuItemId) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -61,7 +61,7 @@ public class OrderDetailController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping("{order_detail_id}")
+    @GetMapping("{order_detail_id}")
     public ResponseEntity<Map<String, Object>> getOrderDetailById(@PathVariable("order_detail_id") UUID orderDetailId) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");

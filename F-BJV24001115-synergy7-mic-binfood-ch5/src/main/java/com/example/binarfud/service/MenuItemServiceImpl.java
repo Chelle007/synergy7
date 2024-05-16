@@ -1,6 +1,7 @@
 package com.example.binarfud.service;
 
 import com.example.binarfud.exception.MenuItemNameExistedException;
+import com.example.binarfud.exception.MenuItemNotFoundException;
 import com.example.binarfud.model.dto.menuItem.MenuItemCreateRequestDto;
 import com.example.binarfud.model.dto.menuItem.MenuItemDto;
 import com.example.binarfud.model.dto.menuItem.MenuItemUpdateRequestDto;
@@ -51,7 +52,7 @@ public class MenuItemServiceImpl implements MenuItemService {
         }
 
         log.error("Menu item not found: {}", (id));
-        throw new IllegalArgumentException("Menu item not found: " + id);
+        throw new MenuItemNotFoundException("Menu item not found: " + id);
     }
 
     @Override

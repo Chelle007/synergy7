@@ -1,5 +1,6 @@
 package com.example.binarfud.service;
 
+import com.example.binarfud.exception.OrderDetailNotFoundException;
 import com.example.binarfud.model.dto.orderDetail.OrderDetailCreateRequestDto;
 import com.example.binarfud.model.dto.orderDetail.OrderDetailDto;
 import com.example.binarfud.model.dto.orderDetail.OrderDetailUpdateRequestDto;
@@ -54,7 +55,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         }
 
         log.error("Order detail not found: {}", (id));
-        throw new IllegalArgumentException("Order detail not found: " + id);
+        throw new OrderDetailNotFoundException("Order detail not found: " + id);
     }
 
     @Override

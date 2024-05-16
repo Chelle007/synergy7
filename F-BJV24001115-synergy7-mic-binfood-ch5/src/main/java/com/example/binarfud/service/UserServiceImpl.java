@@ -1,6 +1,5 @@
 package com.example.binarfud.service;
 
-import com.example.binarfud.model.dto.restaurant.RestaurantDto;
 import com.example.binarfud.model.dto.user.UserCreateRequestDto;
 import com.example.binarfud.model.dto.user.UserDto;
 import com.example.binarfud.model.dto.user.UserUpdateRequestDto;
@@ -48,7 +47,7 @@ public class UserServiceImpl implements UserService {
         }
 
         log.error("User not found: {}", (id));
-        throw new IllegalArgumentException("User not found: " + id);
+        throw new UserNotFoundException("User not found: " + id);
     }
 
     @Override

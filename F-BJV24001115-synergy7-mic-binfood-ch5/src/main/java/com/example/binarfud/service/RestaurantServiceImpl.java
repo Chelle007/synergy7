@@ -1,5 +1,6 @@
 package com.example.binarfud.service;
 
+import com.example.binarfud.exception.RestaurantNotFoundException;
 import com.example.binarfud.model.dto.restaurant.RestaurantCreateRequestDto;
 import com.example.binarfud.model.dto.restaurant.RestaurantDto;
 import com.example.binarfud.model.dto.restaurant.RestaurantUpdateRequestDto;
@@ -42,7 +43,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
 
         log.error("Restaurant not found: {}", (id));
-        throw new IllegalArgumentException("Restaurant not found: " + id);
+        throw new RestaurantNotFoundException("Restaurant not found: " + id);
     }
 
     @Override
