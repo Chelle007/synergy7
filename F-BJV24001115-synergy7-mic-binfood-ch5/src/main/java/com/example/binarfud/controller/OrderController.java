@@ -3,12 +3,16 @@ package com.example.binarfud.controller;
 import com.example.binarfud.model.dto.order.OrderCreateRequestDto;
 import com.example.binarfud.model.dto.order.OrderDto;
 import com.example.binarfud.model.dto.order.OrderCompleteRequestDto;
+import com.example.binarfud.model.dto.order.OrderReceiptDto;
+import com.example.binarfud.service.JasperService;
 import com.example.binarfud.service.OrderService;
 import com.example.binarfud.service.RestaurantService;
 import com.example.binarfud.service.UserService;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,6 +26,7 @@ public class OrderController {
     @Autowired OrderService orderService;
     @Autowired UserService userService;
     @Autowired RestaurantService restaurantService;
+    @Autowired JasperService jasperService;
 
     @PostMapping
     public ResponseEntity<Map<String, Object>> addOrder(@RequestBody OrderCreateRequestDto orderCreateRequestDto) {
@@ -87,7 +92,35 @@ public class OrderController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping("/complete_order/{order_id}")
+    @GetMapping("/{order_id}/receipt")
+    public ResponseEntity<Map<String, Object>> getOrderReceipt(@PathVariable("order_id") UUID orderId) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+
+        Map<String, Object> data = new HashMap<>();
+        OrderReceiptDto orderReceipt = orderService.getOrderReceiptDto(orderId);
+        data.put("orderReceipt", orderReceipt);
+        response.put("data", data);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/{order_id}/generate/{format}")
+    public ResponseEntity<Resource> generateOrderReceipt(@PathVariable("order_id") UUID orderId, @PathVariable("format") String format) throws JRException {
+        byte[] reportContent = jasperService.getOrderReport(orderService.getOrderReceiptDto(orderId), format);
+
+        ByteArrayResource resource = new ByteArrayResource(reportContent);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .contentLength(resource.contentLength())
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        ContentDisposition.attachment()
+                                .filename("receipt."+format).build().toString())
+                .body(resource);
+    }
+
+    @PutMapping("/{order_id}/complete_order")
     public ResponseEntity<Map<String, Object>> completeOrder(@PathVariable("order_id") UUID orderId, OrderCompleteRequestDto orderCompleteRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");

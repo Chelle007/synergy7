@@ -5,6 +5,9 @@ import com.example.binarfud.exception.UsernameExistedException;
 import com.example.binarfud.model.dto.order.OrderCompleteRequestDto;
 import com.example.binarfud.model.dto.order.OrderCreateRequestDto;
 import com.example.binarfud.model.dto.order.OrderDto;
+import com.example.binarfud.model.dto.order.OrderReceiptDto;
+import com.example.binarfud.model.dto.orderDetail.OrderDetailDto;
+import com.example.binarfud.model.dto.orderDetail.OrderDetailReportDto;
 import com.example.binarfud.model.entity.*;
 import com.example.binarfud.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,6 +27,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired OrderRepository orderRepository;
     @Autowired UserService userService;
     @Autowired RestaurantService restaurantService;
+    @Autowired OrderDetailService orderDetailService;
+    @Autowired MenuItemService menuItemService;
     @Autowired ModelMapper modelMapper;
 
     @Override
@@ -75,6 +81,33 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findByRestaurantAndCompleted(restaurant, true).stream()
                 .map(order -> modelMapper.map(order, OrderDto.class))
                 .toList();
+    }
+
+    @Override
+    public OrderReceiptDto getOrderReceiptDto(UUID orderId) {
+        Order order = getById(orderId);
+        OrderReceiptDto orderReceiptDto = new OrderReceiptDto();
+
+        orderReceiptDto.setOrderId(orderId);
+        orderReceiptDto.setOrderTime(order.getOrderTime());
+        orderReceiptDto.setRestaurantName(order.getRestaurant().getName());
+        orderReceiptDto.setDestinationAddress(order.getDestinationAddress());
+
+        List<OrderDetailReportDto> orderDetailReportDtoList = new ArrayList<>();
+
+        for (OrderDetailDto orderDetailDto : orderDetailService.getListByOrder(order)) {
+            OrderDetailReportDto orderDetailReportDto = modelMapper.map(orderDetailDto, OrderDetailReportDto.class);
+
+            orderDetailReportDto.setMenuItemName(menuItemService.getById(orderDetailDto.getMenuItemId()).getName());
+
+            orderDetailReportDtoList.add(orderDetailReportDto);
+        }
+
+        orderReceiptDto.setOrderDetailReportDtoList(orderDetailReportDtoList);
+        orderReceiptDto.setTotalPrice(orderRepository.getTotalPrice(orderId));
+        orderReceiptDto.setTotalQty(orderRepository.getTotalQty(orderId));
+
+        return orderReceiptDto;
     }
 
     @Override
