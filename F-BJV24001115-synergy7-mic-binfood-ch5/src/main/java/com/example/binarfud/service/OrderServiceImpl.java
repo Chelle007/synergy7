@@ -27,8 +27,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired OrderRepository orderRepository;
     @Autowired UserService userService;
     @Autowired RestaurantService restaurantService;
-    @Autowired OrderDetailService orderDetailService;
-    @Autowired MenuItemService menuItemService;
     @Autowired ModelMapper modelMapper;
 
     @Override
@@ -84,30 +82,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderReceiptDto getOrderReceiptDto(UUID orderId) {
-        Order order = getById(orderId);
-        OrderReceiptDto orderReceiptDto = new OrderReceiptDto();
+    public int getTotalPrice(UUID id) {
+        return orderRepository.getTotalPrice(id);
+    }
 
-        orderReceiptDto.setOrderId(orderId);
-        orderReceiptDto.setOrderTime(order.getOrderTime());
-        orderReceiptDto.setRestaurantName(order.getRestaurant().getName());
-        orderReceiptDto.setDestinationAddress(order.getDestinationAddress());
-
-        List<OrderDetailReportDto> orderDetailReportDtoList = new ArrayList<>();
-
-        for (OrderDetailDto orderDetailDto : orderDetailService.getListByOrder(order)) {
-            OrderDetailReportDto orderDetailReportDto = modelMapper.map(orderDetailDto, OrderDetailReportDto.class);
-
-            orderDetailReportDto.setMenuItemName(menuItemService.getById(orderDetailDto.getMenuItemId()).getName());
-
-            orderDetailReportDtoList.add(orderDetailReportDto);
-        }
-
-        orderReceiptDto.setOrderDetailReportDtoList(orderDetailReportDtoList);
-        orderReceiptDto.setTotalPrice(orderRepository.getTotalPrice(orderId));
-        orderReceiptDto.setTotalQty(orderRepository.getTotalQty(orderId));
-
-        return orderReceiptDto;
+    public int getTotalQty(UUID id) {
+        return orderRepository.getTotalQty(id);
     }
 
     @Override

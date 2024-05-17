@@ -4,10 +4,7 @@ import com.example.binarfud.model.dto.order.OrderCreateRequestDto;
 import com.example.binarfud.model.dto.order.OrderDto;
 import com.example.binarfud.model.dto.order.OrderCompleteRequestDto;
 import com.example.binarfud.model.dto.order.OrderReceiptDto;
-import com.example.binarfud.service.JasperService;
-import com.example.binarfud.service.OrderService;
-import com.example.binarfud.service.RestaurantService;
-import com.example.binarfud.service.UserService;
+import com.example.binarfud.service.*;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -26,6 +23,8 @@ public class OrderController {
     @Autowired OrderService orderService;
     @Autowired UserService userService;
     @Autowired RestaurantService restaurantService;
+    @Autowired
+    ReceiptService receiptService;
     @Autowired JasperService jasperService;
 
     @PostMapping
@@ -98,7 +97,7 @@ public class OrderController {
         response.put("status", "success");
 
         Map<String, Object> data = new HashMap<>();
-        OrderReceiptDto orderReceipt = orderService.getOrderReceiptDto(orderId);
+        OrderReceiptDto orderReceipt = receiptService.getOrderReceiptDto(orderId);
         data.put("orderReceipt", orderReceipt);
         response.put("data", data);
 
@@ -107,7 +106,7 @@ public class OrderController {
 
     @GetMapping("/{order_id}/generate/{format}")
     public ResponseEntity<Resource> generateOrderReceipt(@PathVariable("order_id") UUID orderId, @PathVariable("format") String format) throws JRException {
-        byte[] reportContent = jasperService.getOrderReport(orderService.getOrderReceiptDto(orderId), format);
+        byte[] reportContent = jasperService.getOrderReport(receiptService.getOrderReceiptDto(orderId), format);
 
         ByteArrayResource resource = new ByteArrayResource(reportContent);
 

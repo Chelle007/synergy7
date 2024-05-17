@@ -19,7 +19,8 @@ public interface OrderService {
     List<OrderDto> getList();
     List<OrderDto> getCompletedListByUser(User user);
     List<OrderDto> getCompletedListByRestaurant(Restaurant restaurant);
-    OrderReceiptDto getOrderReceiptDto(UUID orderId);
+    int getTotalPrice(UUID id);
+    int getTotalQty(UUID id);
 
     // UPDATE
     OrderDto completeOrder(UUID id, OrderCompleteRequestDto orderCompleteRequestDto);
