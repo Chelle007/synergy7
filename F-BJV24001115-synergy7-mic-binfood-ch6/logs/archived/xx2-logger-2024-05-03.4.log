@@ -1,0 +1,43 @@
+2024-05-03 09:20:36,331 INFO c.e.b.s.MenuItemServiceImpl [main] Menu item 4ea579a9-fdfb-4b46-8a10-84a2244e6727 telah dihapus
+2024-05-03 09:20:49,706 INFO c.e.b.s.RestaurantServiceImpl [main] Restaurant 4d8df47f-1322-489b-8796-827114700aab telah dihapus
+2024-05-03 09:22:35,770 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-03 09:22:35,771 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-05-03 09:22:35,776 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-05-03 09:22:43,784 INFO o.s.b.StartupInfoLogger [main] Starting BinarfudApplication using Java 21.0.2 with PID 27300 (E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch4\target\classes started by M1ch3 in E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch4)
+2024-05-03 09:22:43,787 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-05-03 09:22:44,235 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-03 09:22:44,293 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 52 ms. Found 5 JPA repository interfaces.
+2024-05-03 09:22:44,599 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-05-03 09:22:44,748 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6fa0450e
+2024-05-03 09:22:44,749 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-05-03 09:22:44,793 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-03 09:22:44,833 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-03 09:22:44,864 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-05-03 09:22:45,072 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-03 09:22:45,118 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-03 09:22:45,874 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-03 09:22:45,877 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-03 09:22:46,212 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-03 09:22:46,387 INFO o.s.b.StartupInfoLogger [main] Started BinarfudApplication in 3.033 seconds (process running for 3.318)
+2024-05-03 09:23:07,794 INFO c.e.b.s.RestaurantServiceImpl [main] CherryResto berhasil ditambahkan
+2024-05-03 09:23:13,992 INFO c.e.b.s.RestaurantServiceImpl [main] Restaurant 965773fe-ea43-4b0a-a7be-6c0c25d8ab58 telah dihapus
+2024-05-03 09:23:19,464 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-03 09:23:19,466 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-05-03 09:23:19,473 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-05-03 09:40:08,547 INFO o.s.b.StartupInfoLogger [main] Starting BinarfudApplication using Java 21.0.2 with PID 6180 (E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch4\target\classes started by M1ch3 in E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch4)
+2024-05-03 09:40:08,549 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-05-03 09:40:09,059 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-03 09:40:09,114 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 51 ms. Found 5 JPA repository interfaces.
+2024-05-03 09:40:09,458 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-05-03 09:40:09,602 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7e0bc8a3
+2024-05-03 09:40:09,603 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-05-03 09:40:09,655 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-03 09:40:09,699 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-03 09:40:09,732 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-05-03 09:40:09,959 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-03 09:40:10,008 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-03 09:40:10,771 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-03 09:40:10,773 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-03 09:40:11,068 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-03 09:40:11,257 INFO o.s.b.StartupInfoLogger [main] Started BinarfudApplication in 3.162 seconds (process running for 3.446)
+2024-05-03 09:40:19,411 INFO c.e.b.s.UserServiceImpl [main] Username user 49ba7d75-713f-4c74-89a0-8a9380bb506a telah diganti ke Customer1
