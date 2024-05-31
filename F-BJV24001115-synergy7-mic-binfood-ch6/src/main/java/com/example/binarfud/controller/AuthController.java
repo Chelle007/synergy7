@@ -26,7 +26,7 @@ public class AuthController {
     @Autowired JwtUtils jwtUtils;
 
     @PostMapping("/signin")
-    public ResponseEntity<Map<String, Object>>  authenticate(@RequestBody LoginRequestDto loginRequestDto){
+    public ResponseEntity<Map<String, Object>> authenticate(@RequestBody LoginRequestDto loginRequestDto){
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.getUsername(),
                         loginRequestDto.getPassword()));
@@ -52,7 +52,7 @@ public class AuthController {
         // Create a new Principal object with modified authorities
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
         Collection<GrantedAuthority> authorities = new ArrayList<>(oidcUser.getAuthorities());
-        authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER")); // TODO: fix it. Get it from DB
+        authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
 
         UserDetailsImpl modifiedUserDetails = UserDetailsImpl.build(oidcUser);
         OidcUser modifiedOidcUser = new DefaultOidcUser(authorities, oidcUser.getIdToken(), oidcUser.getUserInfo());
