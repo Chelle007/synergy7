@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
 @SpringBootApplication
-@PropertySource("classpath:secrets.properties")
 public class BinarfudApplication {
 
 	public static void main(String[] args) throws InterruptedException {
