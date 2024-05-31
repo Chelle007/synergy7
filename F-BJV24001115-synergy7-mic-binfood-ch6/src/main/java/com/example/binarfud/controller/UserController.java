@@ -2,7 +2,10 @@ package com.example.binarfud.controller;
 
 import com.example.binarfud.model.dto.user.UserCreateRequestDto;
 import com.example.binarfud.model.dto.user.UserDto;
+import com.example.binarfud.model.dto.user.UserRegisterRequestDto;
 import com.example.binarfud.model.dto.user.UserUpdateRequestDto;
+import com.example.binarfud.model.entity.account.User;
+import com.example.binarfud.service.MailService;
 import com.example.binarfud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +21,35 @@ import java.util.UUID;
 @RequestMapping("users")
 public class UserController {
     @Autowired UserService userService;
+    @Autowired MailService mailService;
+
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody UserRegisterRequestDto userRegisterRequestDto, @RequestParam String role) {
+        mailService.registerUser(userRegisterRequestDto, role);
+        return ResponseEntity.ok("User registered successfully. Check email for OTP.");
+    }
+
+    @PostMapping("/validate-otp")
+    public ResponseEntity<String> validateOtp(@RequestParam String email, @RequestParam String otp) {
+        if (mailService.validateOtp(email, otp)) {
+            return ResponseEntity.ok("User activated successfully.");
+        }
+        return ResponseEntity.badRequest().body("Invalid OTP.");
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestParam String email) {
+        mailService.sendPasswordResetOtp(email);
+        return ResponseEntity.ok("OTP sent to email.");
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestParam String email, @RequestParam String otp, @RequestParam String newPassword) {
+        if (mailService.resetPassword(email, otp, newPassword)) {
+            return ResponseEntity.ok("Password reset successfully.");
+        }
+        return ResponseEntity.badRequest().body("Invalid OTP or OTP expired.");
+    }
 
     @PostMapping
     public ResponseEntity<Map<String, Object>> addUser(@RequestBody UserCreateRequestDto userCreateRequestDto) {

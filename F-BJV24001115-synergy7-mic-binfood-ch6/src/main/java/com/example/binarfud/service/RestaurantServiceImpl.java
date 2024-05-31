@@ -5,6 +5,7 @@ import com.example.binarfud.model.dto.menuItem.MenuItemDto;
 import com.example.binarfud.model.dto.menuItem.MenuItemIncomeDto;
 import com.example.binarfud.model.dto.restaurant.*;
 import com.example.binarfud.model.entity.*;
+import com.example.binarfud.model.entity.account.User;
 import com.example.binarfud.repository.RestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

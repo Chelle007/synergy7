@@ -3,22 +3,24 @@ package com.example.binarfud.service;
 import com.example.binarfud.model.dto.user.UserCreateRequestDto;
 import com.example.binarfud.model.dto.user.UserDto;
 import com.example.binarfud.model.dto.user.UserUpdateRequestDto;
-import com.example.binarfud.model.entity.*;
 import com.example.binarfud.exception.*;
+import com.example.binarfud.model.entity.account.Role;
+import com.example.binarfud.model.entity.account.ERole;
+import com.example.binarfud.model.entity.account.User;
+import com.example.binarfud.repository.RoleRepository;
 import com.example.binarfud.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
     @Autowired UserRepository userRepository;
+    @Autowired RoleRepository roleRepository;
     @Autowired ModelMapper modelMapper;
 
     @Override
@@ -40,6 +42,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void createUserPostLogin(String name, String email) {
+        Role role = roleRepository.findByName(ERole.ROLE_CUSTOMER);
+        Set<Role> roles = new HashSet<>(Collections.singletonList(role));
+
+        User user = getByUsername(email);
+        if(user == null){
+            user = User.builder()
+                    .username(email)
+                    .email(email)
+                    .roles(roles)
+                    .build();
+            userRepository.save(user);
+        }
+    }
+
+    @Override
     public User getById(UUID id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
@@ -53,6 +71,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getDtoById(UUID id) {
         return modelMapper.map(getById(id), UserDto.class);
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        return userOptional.orElse(null);
     }
 
     @Override

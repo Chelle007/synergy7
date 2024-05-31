@@ -1,12 +1,17 @@
-package com.example.binarfud.model.entity;
+package com.example.binarfud.model.entity.account;
 
+import com.example.binarfud.model.entity.Order;
+import com.example.binarfud.model.entity.Restaurant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -29,13 +34,17 @@ public class User {
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(columnDefinition = "boolean default false")
+    private boolean active = Boolean.FALSE;
 
-    public enum Role {
-        CUSTOMER,
-        SELLER
-    }
+    private String otp;
+    private LocalDateTime otpExpirationTime;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

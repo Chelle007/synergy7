@@ -2,6 +2,7 @@ package com.example.binarfud.service;
 
 import com.example.binarfud.model.dto.restaurant.*;
 import com.example.binarfud.model.entity.*;
+import com.example.binarfud.model.entity.account.User;
 
 import java.time.LocalDateTime;
 import java.util.List;

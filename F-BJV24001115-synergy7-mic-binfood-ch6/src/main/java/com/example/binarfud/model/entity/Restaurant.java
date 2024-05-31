@@ -1,5 +1,6 @@
 package com.example.binarfud.model.entity;
 
+import com.example.binarfud.model.entity.account.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;

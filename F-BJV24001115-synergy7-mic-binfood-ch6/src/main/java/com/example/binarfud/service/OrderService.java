@@ -3,8 +3,8 @@ package com.example.binarfud.service;
 import com.example.binarfud.model.dto.order.OrderCompleteRequestDto;
 import com.example.binarfud.model.dto.order.OrderCreateRequestDto;
 import com.example.binarfud.model.dto.order.OrderDto;
-import com.example.binarfud.model.dto.order.OrderReceiptDto;
 import com.example.binarfud.model.entity.*;
+import com.example.binarfud.model.entity.account.User;
 
 import java.util.List;
 import java.util.UUID;
