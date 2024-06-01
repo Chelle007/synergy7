@@ -17,12 +17,16 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableMethodSecurity
@@ -44,14 +48,12 @@ public class SecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/home/hello").permitAll()
-                                .requestMatchers("/cinema", "/cinema/dto", "/cinema/re").permitAll()
-                                .requestMatchers("/movie").permitAll()
-                                .requestMatchers("/login").permitAll()
-                                .requestMatchers("/auth/signin/**", "/auth/signin", "/register").permitAll()
+                                .requestMatchers("/users/register", "/users/validate-otp", "/users/forgot-password", "/users/reset-password").permitAll()
+                                .requestMatchers("/auth/signin/**", "/auth/signin", "/auth/register").permitAll()
+                                .requestMatchers("/v3/api-docs/**", "/swagger*/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
@@ -62,7 +64,6 @@ public class SecurityConfig implements WebMvcConfigurer {
                                         .oidcUserService(this.oidcUserService())
                                 )
                                 .successHandler((request, response, authentication) -> {
-                                    //create user jika belum ada di db
                                     //GOOGLE
                                     DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
                                     userService.createUserPostLogin(oidcUser.getAttribute("email"),
@@ -109,5 +110,18 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .favorParameter(false)
                 .ignoreAcceptHeader(true)
                 .defaultContentType(MediaType.APPLICATION_JSON);
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("https://google.com", "https://accounts.google.com/", "https://binarfud-api-production.up.railway.app/", "http://localhost:8080"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

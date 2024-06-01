@@ -2,6 +2,7 @@ package com.example.binarfud.service;
 
 import com.example.binarfud.model.dto.user.UserRegisterRequestDto;
 import com.example.binarfud.model.entity.account.ERole;
+import com.example.binarfud.model.entity.account.Role;
 import com.example.binarfud.model.entity.account.User;
 import com.example.binarfud.repository.RoleRepository;
 import com.example.binarfud.repository.UserRepository;
@@ -12,10 +13,13 @@ import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -25,19 +29,22 @@ public class MailServiceImpl implements MailService {
     @Autowired JavaMailSender javaMailSender;
     @Autowired UserRepository userRepository;
     @Autowired RoleRepository roleRepository;
-    @Autowired BCryptPasswordEncoder passwordEncoder;
+    @Autowired PasswordEncoder passwordEncoder;
     @Autowired ModelMapper modelMapper;
 
     @Override
-    public void registerUser(UserRegisterRequestDto userRegisterRequestDto, String role) {
+    public void registerUser(UserRegisterRequestDto userRegisterRequestDto, String roleString) {
         User user = modelMapper.map(userRegisterRequestDto, User.class);
         user.setId(UUID.randomUUID());
         user.setActive(false);
         user.setOtp(generateOtp());
         user.setOtpExpirationTime(LocalDateTime.now().plusMinutes(10));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        ERole eRole = role.equals("seller") ? ERole.ROLE_SELLER : ERole.ROLE_CUSTOMER;
-        user.getRoles().add(roleRepository.findByName(eRole));
+
+        ERole eRole = ERole.toERole("ROLE_"+roleString);
+        Role role = roleRepository.findByName(eRole);
+        user.setRole(role);
+
         userRepository.save(user);
         sendOtpEmail(user.getEmail(), user.getOtp());
     }
