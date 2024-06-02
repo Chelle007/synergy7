@@ -33,9 +33,7 @@ import java.util.Arrays;
 public class SecurityConfig implements WebMvcConfigurer {
 
     final UserDetailsServiceImpl userDetailService;
-
     final JwtUtils jwtUtils;
-
     final UserService userService;
 
     public SecurityConfig(UserDetailsServiceImpl userDetailService, JwtUtils jwtUtils, UserService userService) {
@@ -45,7 +43,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
@@ -60,17 +58,16 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin(Customizer.withDefaults())
                 .oauth2Login(oauth2 -> oauth2
-                                .userInfoEndpoint(userInfo -> userInfo
-                                        .oidcUserService(this.oidcUserService())
-                                )
-                                .successHandler((request, response, authentication) -> {
-                                    //GOOGLE
-                                    DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
-                                    userService.createUserPostLogin(oidcUser.getAttribute("email"),
-                                            oidcUser.getAttribute("email"));
+                        .userInfoEndpoint(userInfo -> userInfo
+                                .oidcUserService(this.oidcUserService())
+                        )
+                        .successHandler((request, response, authentication) -> {
+                            DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
+                            userService.createUserPostLogin(oidcUser.getAttribute("email"),
+                                    oidcUser.getAttribute("email"));
 
-                                    response.sendRedirect("/auth/oauth2/success");
-                                })
+                            response.sendRedirect("/auth/oauth2/success");
+                        })
                 );
 
         return http.build();
@@ -113,11 +110,16 @@ public class SecurityConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource(){
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://google.com", "https://accounts.google.com/", "https://binarfud-api-production.up.railway.app/", "http://localhost:8080"));
+        configuration.setAllowedOrigins(Arrays.asList(
+                "https://google.com",
+                "https://accounts.google.com/",
+                "https://binarfud-api-production.up.railway.app",
+                "http://localhost:8080"
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
-        configuration.setAllowedHeaders(Arrays.asList("Authorization"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
