@@ -1,0 +1,41 @@
+2024-05-16 18:20:46,910 INFO o.s.b.StartupInfoLogger [main] Starting BinarfudApplication using Java 21.0.2 with PID 16928 (E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch5\target\classes started by M1ch3 in E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch5)
+2024-05-16 18:20:46,913 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-05-16 18:20:47,681 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-16 18:20:47,745 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 56 ms. Found 5 JPA repository interfaces.
+2024-05-16 18:20:48,286 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-05-16 18:20:48,296 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-05-16 18:20:48,299 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-05-16 18:20:48,299 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-05-16 18:20:48,351 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-05-16 18:20:48,353 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1405 ms
+2024-05-16 18:20:48,552 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-05-16 18:20:48,766 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@491f8831
+2024-05-16 18:20:48,769 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-05-16 18:20:48,815 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-16 18:20:48,872 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-16 18:20:48,899 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-05-16 18:20:49,103 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-16 18:20:49,184 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-16 18:20:49,884 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-16 18:20:49,886 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-16 18:20:50,364 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-16 18:20:50,579 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-16 18:20:51,116 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-05-16 18:20:51,141 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-05-16 18:20:51,150 INFO o.s.b.StartupInfoLogger [main] Started BinarfudApplication in 4.691 seconds (process running for 4.973)
+2024-05-16 18:20:55,948 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-16 18:20:55,948 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-05-16 18:20:55,949 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2024-05-16 18:20:56,118 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] Start: 2020-05-16T17:54:53
+2024-05-16 18:20:56,119 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] End: 2024-05-16T17:54:53
+2024-05-16 18:20:56,122 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] Start: 2020-05-16T17:54:53
+2024-05-16 18:20:56,122 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] End: 2024-05-16T17:54:53
+2024-05-16 18:20:56,124 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] Start: 2020-05-16T17:54:53
+2024-05-16 18:20:56,124 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] End: 2024-05-16T17:54:53
+2024-05-16 18:20:56,126 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] Start: 2020-05-16T17:54:53
+2024-05-16 18:20:56,126 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] End: 2024-05-16T17:54:53
+2024-05-16 18:20:56,128 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] Start: 2020-05-16T17:54:53
+2024-05-16 18:20:56,128 INFO c.e.b.s.MenuItemServiceImpl [http-nio-8080-exec-1] End: 2024-05-16T17:54:53
+2024-05-16 18:23:21,836 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-16 18:23:21,838 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-05-16 18:23:21,841 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
