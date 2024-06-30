@@ -1,0 +1,39 @@
+2024-05-02 22:58:38,744 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-02 22:58:38,747 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-05-02 22:58:38,752 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-05-02 22:58:46,753 INFO o.s.b.StartupInfoLogger [main] Starting BinarfudApplication using Java 21.0.2 with PID 17352 (E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch4\target\classes started by M1ch3 in E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch4)
+2024-05-02 22:58:46,762 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-05-02 22:58:47,493 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-02 22:58:47,595 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 92 ms. Found 5 JPA repository interfaces.
+2024-05-02 22:58:48,225 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-05-02 22:58:48,484 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5de6cf3a
+2024-05-02 22:58:48,486 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-05-02 22:58:48,547 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-02 22:58:48,630 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-02 22:58:48,712 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-05-02 22:58:49,146 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-02 22:58:49,221 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-02 22:58:50,638 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-02 22:58:50,642 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-02 22:58:51,174 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-02 22:58:51,632 INFO o.s.b.StartupInfoLogger [main] Started BinarfudApplication in 5.744 seconds (process running for 6.288)
+2024-05-02 22:59:15,048 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-02 22:59:15,050 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-05-02 22:59:15,055 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-05-02 22:59:18,435 INFO o.s.b.StartupInfoLogger [main] Starting BinarfudApplication using Java 21.0.2 with PID 17720 (E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch4\target\classes started by M1ch3 in E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch4)
+2024-05-02 22:59:18,441 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-05-02 22:59:19,611 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-02 22:59:19,739 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 116 ms. Found 5 JPA repository interfaces.
+2024-05-02 22:59:20,506 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-05-02 22:59:20,923 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@66deec87
+2024-05-02 22:59:20,927 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-05-02 22:59:20,999 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-02 22:59:21,128 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-02 22:59:21,196 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-05-02 22:59:21,550 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-02 22:59:21,651 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-02 22:59:23,073 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-02 22:59:23,079 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-02 22:59:23,871 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-02 22:59:25,746 INFO o.s.b.StartupInfoLogger [main] Started BinarfudApplication in 8.341 seconds (process running for 9.658)
+2024-05-02 23:00:09,314 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=48s281ms387µs300ns).

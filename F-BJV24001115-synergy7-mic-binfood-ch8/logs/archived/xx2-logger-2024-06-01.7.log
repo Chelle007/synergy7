@@ -1,0 +1,34 @@
+2024-06-01 22:25:36,315 WARN c.z.h.p.HikariPool$HouseKeeper [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h55m55s298ms43µs200ns).
+2024-06-01 22:28:51,519 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-01 22:28:51,525 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-06-01 22:28:51,592 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-06-01 22:30:39,673 INFO o.s.b.StartupInfoLogger [main] Starting BinarfudApplication using Java 21.0.2 with PID 3204 (E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch6\target\classes started by M1ch3 in E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch6)
+2024-06-01 22:30:39,675 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-01 22:30:40,641 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-01 22:30:40,722 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 75 ms. Found 6 JPA repository interfaces.
+2024-06-01 22:30:41,584 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-01 22:30:41,608 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-01 22:30:41,614 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-01 22:30:41,614 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-01 22:30:41,735 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-01 22:30:41,736 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2022 ms
+2024-06-01 22:30:42,067 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-01 22:30:42,179 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-01 22:30:42,207 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-01 22:30:42,449 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-01 22:30:42,474 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-01 22:30:44,459 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2328ec73
+2024-06-01 22:30:44,460 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-01 22:30:44,659 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-01 22:30:45,805 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-01 22:30:50,756 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-01 22:30:52,302 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-06-01 22:30:54,006 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-01 22:30:55,398 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7e7ee3b7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5d87c8af, org.springframework.security.web.context.SecurityContextHolderFilter@521e34d4, org.springframework.security.web.header.HeaderWriterFilter@608f79a8, org.springframework.web.filter.CorsFilter@66d9c846, org.springframework.security.web.authentication.logout.LogoutFilter@48971262, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@57629340, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@5aef36a9, com.example.binarfud.security.jwt.JwtAuthTokenFilter@1d82d35c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@16d31c48, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6e157f48, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2b6d9650, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2be9add0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2252dc5d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2287bbd1, org.springframework.security.web.access.ExceptionTranslationFilter@1e6be9f0, org.springframework.security.web.access.intercept.AuthorizationFilter@2746bc43]
+2024-06-01 22:30:55,856 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-01 22:30:55,867 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-06-01 22:30:55,874 INFO o.s.b.StartupInfoLogger [main] Started BinarfudApplication in 16.78 seconds (process running for 17.182)
+2024-06-01 22:31:02,619 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-01 22:31:02,619 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-06-01 22:31:02,620 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2024-06-01 22:31:17,782 INFO o.s.a.AbstractOpenApiResource [http-nio-8080-exec-2] Init duration for springdoc-openapi is: 2540 ms
