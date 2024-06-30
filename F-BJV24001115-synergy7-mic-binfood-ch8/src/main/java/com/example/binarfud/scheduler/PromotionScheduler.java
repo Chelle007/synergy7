@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 public class PromotionScheduler {
     @Autowired FCMService fcmService;
 
-    @Scheduled(cron = "0 42 23 * * *")
+    @Scheduled(cron = "0 0 12 * * *")
     public void cronJob() throws ExecutionException, InterruptedException {
         NotificationRequest request = new NotificationRequest();
         request.setTitle("Afternoon Binarfud Promo");
