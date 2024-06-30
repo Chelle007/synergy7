@@ -17,7 +17,7 @@ public class PromotionScheduler {
         NotificationRequest request = new NotificationRequest();
         request.setTitle("Afternoon Binarfud Promo");
         request.setBody("Order at 12.00-13.00 to get 20% discount");
-        request.setToken("esIvv0Fs8PLImqrzqH5PMd:APA91bHjEfHeU8E0NpIo_D1FOt-5S9Xvt8xtkMwONlmWY3npqKTO5iglcTTBEK1I3-d5ezPCMBiqyb--I9yMg7cCangaUvCXI2tBk50D_pk7rGWGM6mt5InsYFzeERG48PJBhDZRZWcz");
+        request.setToken("fheZoT6OtNIqjaoBDIqTGB:APA91bHeksg2XYFFQIpohRw9JGTJ2Tq5ssKzQzHjDY0eRkDg9CxXRqq8Mae-aA9yqq8YzEjZndddf84suFMvmmtIsrh_0QOkCsa7xuZmjmw_CG-mFgPLY8o2CtY2zuo8zvI4InibM_ns");
         System.out.println("Sending...");
         fcmService.sendMessageToToken(request);
     }

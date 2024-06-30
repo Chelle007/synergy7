@@ -130,6 +130,7 @@ public class MenuItemServiceImpl implements MenuItemService {
         existingMenuItem.setPriceS(menuItemUpdateRequestDto.getPriceS());
         existingMenuItem.setPriceM(menuItemUpdateRequestDto.getPriceM());
         existingMenuItem.setPriceL(menuItemUpdateRequestDto.getPriceL());
+        existingMenuItem.setStock(menuItemUpdateRequestDto.getStock());
 
         MenuItem updatedMenuItem = menuItemRepository.save(existingMenuItem);
         return modelMapper.map(updatedMenuItem, MenuItemDto.class);
