@@ -1,0 +1,36 @@
+2024-06-30 21:52:34,242 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-30 21:52:34,244 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-06-30 21:52:34,246 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2024-06-30 21:53:54,966 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-30 21:53:54,969 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-06-30 21:53:54,973 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-06-30 21:54:12,222 INFO o.s.b.StartupInfoLogger [main] Starting BinarfudApplication using Java 21.0.2 with PID 11040 (E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch8\target\classes started by M1ch3 in E:\Documents\Bootcamp\Synrgy batch 7 - Java Backend\synergy7\F-BJV24001115-synergy7-mic-binfood-ch8)
+2024-06-30 21:54:12,223 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-06-30 21:54:13,106 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-30 21:54:13,173 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 59 ms. Found 6 JPA repository interfaces.
+2024-06-30 21:54:13,997 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-06-30 21:54:14,025 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2024-06-30 21:54:14,031 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-06-30 21:54:14,032 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-06-30 21:54:14,164 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-06-30 21:54:14,165 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1903 ms
+2024-06-30 21:54:14,477 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-30 21:54:14,582 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-06-30 21:54:14,636 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-06-30 21:54:14,846 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-30 21:54:14,903 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-06-30 21:54:15,173 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@73d91faf
+2024-06-30 21:54:15,175 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-06-30 21:54:15,207 WARN o.h.e.j.d.i.DialectFactoryImpl [main] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-30 21:54:16,070 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-30 21:54:16,170 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-30 21:54:16,618 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-06-30 21:54:16,898 INFO c.e.b.s.FCMInitializer [main] Firebase application has been initialized
+2024-06-30 21:54:17,010 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-30 21:54:17,350 INFO o.s.s.w.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@123fd460, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5037f491, org.springframework.security.web.context.SecurityContextHolderFilter@50c9b080, org.springframework.security.web.header.HeaderWriterFilter@6e620fa9, org.springframework.web.filter.CorsFilter@1227ea21, org.springframework.security.web.authentication.logout.LogoutFilter@346d8002, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@1d4ee936, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@688884e, com.example.binarfud.security.jwt.JwtAuthTokenFilter@7be3a837, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7def08fc, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6442c2dd, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@511ba9c9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7244b40e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d8de4bd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3debeb5e, org.springframework.security.web.access.ExceptionTranslationFilter@427c9a13, org.springframework.security.web.access.intercept.AuthorizationFilter@23bf19c9]
+2024-06-30 21:54:17,772 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2024-06-30 21:54:17,786 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-06-30 21:54:17,797 INFO o.s.b.StartupInfoLogger [main] Started BinarfudApplication in 6.051 seconds (process running for 6.503)
+2024-06-30 21:54:48,395 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-30 21:54:48,397 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-06-30 21:54:48,401 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
